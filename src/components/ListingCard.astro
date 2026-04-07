@@ -1,0 +1,123 @@
+---
+import type { Restaurant } from '../data/restaurants';
+import { neighbourhoodMeta } from '../data/restaurants';
+
+export interface Props {
+  restaurant: Restaurant;
+}
+
+const { restaurant: r } = Astro.props;
+const neighbourhood = neighbourhoodMeta[r.neighbourhood];
+
+const cuisineEmoji: Record<string, string> = {
+  'British Gastropub': '🍺',
+  'Mediterranean': '🫒',
+  'Burgers': '🍔',
+  'Italian': '🍝',
+  'Italian / Pasta': '🍝',
+  'Middle Eastern / Mediterranean': '🧆',
+  'Australian / Brunch': '☕',
+  'British / Seafood': '🦞',
+  'Turkish / Mediterranean': '🥙',
+  'Portuguese Café': '☕',
+  'Modern European': '🍽️',
+  'Modern European / Brunch': '🥐',
+  'Modern British': '🫖',
+  'American BBQ': '🥩',
+  'American Diner': '🥤',
+  'Modern British / Arts & Crafts': '🫖',
+  'Modern British / Farm-to-Table': '🌿',
+  'Modern French': '🥐',
+  'British Pub': '🍺',
+  'Kurdish / Middle Eastern': '🧆',
+  'Argentine Steakhouse': '🥩',
+  'Modern British / Garden Café': '🌿',
+  'Modern Italian / Garden Café': '🌿',
+  'Café / Tea Rooms': '☕',
+  'French / Breton': '🥞',
+  'French Bistro': '🥐',
+  'Indian / Bombay Café': '🍛',
+  'Thai / BBQ': '🌶️',
+  'Basque / Wood-fire': '🔥',
+  'Street Food / Market': '🎪',
+  'Bakery / Jewish': '🥯',
+  'American Brunch': '🥞',
+  'Fried Chicken': '🍗',
+  'Pizza': '🍕',
+  'Pub Food': '🍺',
+};
+
+const emoji = cuisineEmoji[r.cuisineType] ?? '🍽️';
+
+const keyAttrs = [
+  r.kidsMenu === 'yes' && 'Kids menu',
+  r.highchairs === 'yes' && 'Highchairs',
+  r.outdoorSpace === 'yes' && 'Outdoor space',
+  r.buggyAccessible === 'yes' && 'Buggy friendly',
+  r.softPlay === 'yes' && 'Soft play',
+].filter(Boolean) as string[];
+---
+
+<article
+  class={`listing-card${r.featured ? ' listing-card--featured' : ''}`}
+  data-neighbourhood={r.neighbourhood}
+  data-cuisine={r.cuisineType}
+  data-price={r.priceRange}
+  data-kids-menu={r.kidsMenu}
+  data-outdoor={r.outdoorSpace}
+  data-highchairs={r.highchairs}
+  data-buggy={r.buggyAccessible}
+  data-noise={r.noiseLevel}
+>
+  <div class="listing-card__img">
+    {r.photos.length > 0 ? (
+      <img src={r.photos[0]} alt={`${r.name} restaurant`} loading="lazy" />
+    ) : (
+      <div class="listing-card__img-placeholder">{emoji}</div>
+    )}
+    {r.featured && <span class="badge-featured">⭐ Featured</span>}
+  </div>
+
+  <div class="listing-card__body">
+    <div class="listing-card__cuisine">{r.cuisineType}</div>
+    <h3 class="listing-card__name">
+      <a href={`/restaurants/${r.slug}`}>{r.name}</a>
+    </h3>
+
+    <div class="listing-card__meta">
+      <div class="rating">
+        <span class="rating__star">★</span>
+        <span>{r.googleRating}</span>
+        <span class="rating__count">({r.reviewCount.toLocaleString()})</span>
+      </div>
+      <span class="price-range">{r.priceRange}</span>
+      <span class="text-muted" style="font-size:0.8rem">{neighbourhood.name}</span>
+    </div>
+
+    <p class="listing-card__desc">{r.shortDescription}</p>
+
+    {keyAttrs.length > 0 && (
+      <div class="attribute-tags">
+        {keyAttrs.map((attr) => (
+          <span class="attr-tag">✓ {attr}</span>
+        ))}
+      </div>
+    )}
+
+    <div class="listing-card__footer">
+      <a href={`/restaurants/${r.slug}`} class="btn btn-primary btn-sm">
+        View details →
+      </a>
+      {r.openTableId && (
+        <a
+          href={`https://www.opentable.co.uk/r/${r.openTableId}`}
+          class="btn btn-outline btn-sm"
+          target="_blank"
+          rel="noopener"
+        >
+          Book a table
+        </a>
+      )}
+    </div>
+  </div>
+</article>

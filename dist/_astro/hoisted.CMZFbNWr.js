@@ -1,0 +1,1 @@
+import"./hoisted.DrXb9m-3.js";const t=document.getElementById("badge-code");t?.addEventListener("click",async()=>{await navigator.clipboard.writeText(t.textContent??"");const e=t.style.background;t.style.background="#166534",setTimeout(()=>{t.style.background=e},1e3)});

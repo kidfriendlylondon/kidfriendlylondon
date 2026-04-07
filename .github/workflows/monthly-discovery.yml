@@ -1,0 +1,33 @@
+name: Monthly new listing discovery
+
+on:
+  schedule:
+    # Run on the 1st of every month at 09:00 UTC
+    - cron: '0 9 1 * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  discover-listings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Discover new restaurants via Google Places API
+        env:
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: npx tsx scripts/discover-new-listings.ts
+
+      - name: Notify owner
+        if: always()
+        env:
+          NOTIFY_EMAIL: ${{ secrets.OWNER_EMAIL }}
+        run: echo "Discovery complete — check Supabase pending_review queue"

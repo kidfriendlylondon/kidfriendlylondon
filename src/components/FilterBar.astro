@@ -1,0 +1,97 @@
+---
+// Client-side filter component — works with JS to filter .listing-card elements
+---
+
+<div class="filter-bar" id="filter-bar">
+  <div class="filter-bar__title">Filter restaurants</div>
+  <div class="filter-groups">
+
+    <div class="filter-group">
+      <h4>Price</h4>
+      <div class="filter-chips">
+        <button class="chip" data-filter="price" data-value="£">£ Budget</button>
+        <button class="chip" data-filter="price" data-value="££">££ Mid-range</button>
+        <button class="chip" data-filter="price" data-value="$$$">£££ Splurge</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <h4>Features</h4>
+      <div class="filter-chips">
+        <button class="chip" data-filter="kids-menu" data-value="yes">Kids menu</button>
+        <button class="chip" data-filter="outdoor" data-value="yes">Outdoor space</button>
+        <button class="chip" data-filter="highchairs" data-value="yes">Highchairs</button>
+        <button class="chip" data-filter="buggy" data-value="yes">Buggy friendly</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <h4>Vibe</h4>
+      <div class="filter-chips">
+        <button class="chip" data-filter="noise" data-value="quiet">Quiet</button>
+        <button class="chip" data-filter="noise" data-value="moderate">Moderate</button>
+        <button class="chip" data-filter="noise" data-value="lively">Lively</button>
+      </div>
+    </div>
+
+  </div>
+  <button class="filter-reset" id="filter-reset" style="display:none">Clear all filters</button>
+</div>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip[data-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('.listing-card');
+  const resetBtn = document.getElementById('filter-reset');
+  const noResults = document.getElementById('no-results');
+
+  const activeFilters: Record<string, string> = {};
+
+  function applyFilters() {
+    let anyActive = Object.keys(activeFilters).length > 0;
+    if (resetBtn) resetBtn.style.display = anyActive ? 'block' : 'none';
+
+    let visibleCount = 0;
+    cards.forEach((card) => {
+      let show = true;
+      for (const [filter, value] of Object.entries(activeFilters)) {
+        const attr = `data-${filter}`;
+        if (card.getAttribute(attr) !== value) {
+          show = false;
+          break;
+        }
+      }
+      card.style.display = show ? '' : 'none';
+      if (show) visibleCount++;
+    });
+
+    if (noResults) noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const filter = chip.dataset.filter!;
+      const value = chip.dataset.value!;
+
+      if (activeFilters[filter] === value) {
+        // Toggle off
+        delete activeFilters[filter];
+        chip.classList.remove('active');
+      } else {
+        // Deactivate sibling chips for this filter group
+        document.querySelectorAll<HTMLButtonElement>(`.chip[data-filter="${filter}"]`).forEach((c) => {
+          c.classList.remove('active');
+        });
+        activeFilters[filter] = value;
+        chip.classList.add('active');
+      }
+
+      applyFilters();
+    });
+  });
+
+  resetBtn?.addEventListener('click', () => {
+    Object.keys(activeFilters).forEach((k) => delete activeFilters[k]);
+    chips.forEach((c) => c.classList.remove('active'));
+    applyFilters();
+  });
+</script>

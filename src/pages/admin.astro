@@ -1,0 +1,154 @@
+---
+import Base from '../layouts/Base.astro';
+import { restaurants, neighbourhoodMeta, boroughMeta } from '../data/restaurants';
+
+// Password check — in production use Vercel Edge Middleware or basic auth
+// For now, a simple client-side password gate
+const byNeighbourhood = Object.entries(neighbourhoodMeta).map(([slug, meta]) => ({
+  slug,
+  name: meta.name,
+  count: restaurants.filter((r) => r.neighbourhood === slug).length,
+  featured: restaurants.filter((r) => r.neighbourhood === slug && r.featured).length,
+}));
+
+const totalFeatured = restaurants.filter((r) => r.featured).length;
+const featuredRevenue = totalFeatured * 29;
+const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Base
+  title="Admin Dashboard | Kid Friendly London"
+  description="Internal admin dashboard"
+>
+  <!-- Password gate -->
+  <div id="admin-gate" style="display:flex;align-items:center;justify-content:center;min-height:50vh;padding:2rem">
+    <div style="text-align:center;max-width:320px">
+      <h2 style="margin-bottom:1rem">Admin access</h2>
+      <input type="password" id="admin-pw" placeholder="Enter password" style="width:100%;padding:0.75rem;border:1.5px solid var(--color-border);border-radius:var(--radius-sm);font-size:1rem;margin-bottom:0.75rem" />
+      <button onclick="checkPw()" class="btn btn-primary" style="width:100%;justify-content:center">Enter</button>
+    </div>
+  </div>
+
+  <div id="admin-content" style="display:none">
+    <section class="page-hero">
+      <div class="container">
+        <p class="page-hero__tag">Internal</p>
+        <h1>Admin Dashboard</h1>
+        <p style="color:var(--color-text-muted)">Last database update: {lastUpdated}</p>
+      </div>
+    </section>
+
+    <div class="container" style="padding:2rem 0 4rem">
+      <!-- Key stats -->
+      <div class="admin-grid">
+        <div class="admin-stat-card">
+          <div class="admin-stat-card__value">{restaurants.length}</div>
+          <div class="admin-stat-card__label">Total listings</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-card__value">{totalFeatured}</div>
+          <div class="admin-stat-card__label">Featured listings</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-card__value">£{featuredRevenue}</div>
+          <div class="admin-stat-card__label">Monthly featured revenue (if all active)</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-card__value">{Object.keys(neighbourhoodMeta).length}</div>
+          <div class="admin-stat-card__label">Neighbourhoods live</div>
+        </div>
+      </div>
+
+      <!-- By neighbourhood -->
+      <h2 style="margin-bottom:1rem">Listings by neighbourhood</h2>
+      <table style="width:100%;border-collapse:collapse;margin-bottom:2.5rem">
+        <thead>
+          <tr style="text-align:left;border-bottom:2px solid var(--color-border)">
+            <th style="padding:0.75rem">Neighbourhood</th>
+            <th style="padding:0.75rem">Total listings</th>
+            <th style="padding:0.75rem">Featured</th>
+            <th style="padding:0.75rem">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {byNeighbourhood.map((n) => (
+            <tr style="border-bottom:1px solid var(--color-border-light)">
+              <td style="padding:0.75rem;font-weight:600">{n.name}</td>
+              <td style="padding:0.75rem">{n.count}</td>
+              <td style="padding:0.75rem">{n.featured}</td>
+              <td style="padding:0.75rem">
+                <a href={`/${n.slug}`} class="btn btn-outline btn-sm" target="_blank">View page →</a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <!-- Quick links -->
+      <h2 style="margin-bottom:1rem">Quick links</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2rem">
+        <a href="https://analytics.google.com" class="btn btn-outline" target="_blank">Google Analytics →</a>
+        <a href="https://search.google.com/search-console" class="btn btn-outline" target="_blank">Search Console →</a>
+        <a href="https://supabase.com" class="btn btn-outline" target="_blank">Supabase →</a>
+        <a href="https://mailchimp.com" class="btn btn-outline" target="_blank">Mailchimp →</a>
+        <a href="/suggest" class="btn btn-outline">Suggestions form →</a>
+        <a href="/get-featured" class="btn btn-outline">Featured listing enquiries →</a>
+      </div>
+
+      <!-- Featured revenue tracker -->
+      <h2 style="margin-bottom:1rem">Featured listing revenue tracker</h2>
+      <div style="background:var(--color-bg-soft);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:1.5rem">
+        <p style="color:var(--color-text-muted);font-size:0.875rem;margin-bottom:1rem">
+          Manual input — update monthly with actual active featured listings and payment status.
+        </p>
+        <table style="width:100%;border-collapse:collapse">
+          <thead>
+            <tr style="text-align:left;border-bottom:1px solid var(--color-border)">
+              <th style="padding:0.5rem;font-size:0.875rem">Restaurant</th>
+              <th style="padding:0.5rem;font-size:0.875rem">Neighbourhood</th>
+              <th style="padding:0.5rem;font-size:0.875rem">Status</th>
+              <th style="padding:0.5rem;font-size:0.875rem">Monthly</th>
+            </tr>
+          </thead>
+          <tbody>
+            {restaurants.filter((r) => r.featured).map((r) => (
+              <tr style="border-bottom:1px solid var(--color-border-light)">
+                <td style="padding:0.5rem;font-size:0.875rem;font-weight:600">{r.name}</td>
+                <td style="padding:0.5rem;font-size:0.875rem">{neighbourhoodMeta[r.neighbourhood].name}</td>
+                <td style="padding:0.5rem">
+                  <span style="background:#f0fdf4;color:#166534;padding:0.2rem 0.5rem;border-radius:999px;font-size:0.75rem;font-weight:600">Active</span>
+                </td>
+                <td style="padding:0.5rem;font-size:0.875rem;font-weight:600;color:var(--color-success)">£29</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function checkPw() {
+      const pw = (document.getElementById('admin-pw') as HTMLInputElement).value;
+      // Change this password before deployment
+      if (pw === 'kfl-admin-2024') {
+        document.getElementById('admin-gate')!.style.display = 'none';
+        document.getElementById('admin-content')!.style.display = 'block';
+        sessionStorage.setItem('admin-auth', '1');
+      } else {
+        alert('Incorrect password');
+      }
+    }
+
+    // Auto-show if already authenticated this session
+    if (sessionStorage.getItem('admin-auth') === '1') {
+      document.getElementById('admin-gate')!.style.display = 'none';
+      document.getElementById('admin-content')!.style.display = 'block';
+    }
+
+    // Allow Enter key
+    document.getElementById('admin-pw')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') checkPw();
+    });
+  </script>
+</Base>

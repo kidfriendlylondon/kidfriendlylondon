@@ -1,0 +1,142 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  schema?: object;
+}
+
+const { title, description, canonical, ogImage, schema } = Astro.props;
+const siteUrl = 'https://kidfriendlylondon.co.uk';
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href;
+const GA_ID = 'G-XXXXXXXXXX'; // Replace with your GA4 measurement ID
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kid Friendly London" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Sitemap -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- JSON-LD Schema -->
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+
+    <!-- Google Analytics 4 -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+    <script define:vars={{ GA_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', GA_ID);
+    </script>
+
+    <!-- Google AdSense -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="logo">
+          <span class="logo-icon">🍽️</span>
+          <span class="logo-text">Kid Friendly<strong>London</strong></span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/clapham">Clapham</a>
+          <a href="/notting-hill">Notting Hill</a>
+          <a href="/islington">Islington</a>
+          <a href="/richmond">Richmond</a>
+          <a href="/shoreditch">Shoreditch</a>
+          <a href="/suggest" class="nav-cta">Suggest a Restaurant</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-col">
+          <div class="logo">
+            <span class="logo-icon">🍽️</span>
+            <span class="logo-text">Kid Friendly<strong>London</strong></span>
+          </div>
+          <p>The most useful guide to family-friendly restaurants in London — built by parents, for parents.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Neighbourhoods</h3>
+          <ul>
+            <li><a href="/clapham">Clapham</a></li>
+            <li><a href="/notting-hill">Notting Hill</a></li>
+            <li><a href="/islington">Islington</a></li>
+            <li><a href="/richmond">Richmond</a></li>
+            <li><a href="/shoreditch">Shoreditch</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Boroughs</h3>
+          <ul>
+            <li><a href="/south-london">South London</a></li>
+            <li><a href="/north-london">North London</a></li>
+            <li><a href="/west-london">West London</a></li>
+            <li><a href="/east-london">East London</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>More</h3>
+          <ul>
+            <li><a href="/suggest">Suggest a Restaurant</a></li>
+            <li><a href="/get-featured">Get Featured</a></li>
+            <li><a href="/manchester">Manchester (coming soon)</a></li>
+            <li><a href="/edinburgh">Edinburgh (coming soon)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>&copy; {new Date().getFullYear()} KidFriendlyLondon.co.uk — All rights reserved.</p>
+          <p class="footer-disclaimer">Listings are independently researched. Affiliate links may be present.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('.main-nav');
+      toggle?.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        nav?.classList.toggle('open');
+      });
+    </script>
+  </body>
+</html>

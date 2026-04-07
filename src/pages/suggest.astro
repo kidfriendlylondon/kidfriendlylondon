@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+
+const url = new URL(Astro.request.url);
+const prefillName = url.searchParams.get('restaurant') ?? '';
+---
+
+<Base
+  title="Suggest a Restaurant | Kid Friendly London"
+  description="Know a great kid-friendly restaurant in London that should be on our list? Suggest it here and we'll review and add it."
+>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Home</a>
+        <span>›</span>
+        <span>Suggest a Restaurant</span>
+      </nav>
+      <p class="page-hero__tag">Help us grow</p>
+      <h1>Suggest a Restaurant</h1>
+      <p style="color:var(--color-text-muted);max-width:55ch;margin-top:0.75rem">
+        Found a brilliant family restaurant that's not on our list? Tell us about it — we'll research it and add it if it meets our standards.
+      </p>
+    </div>
+  </section>
+
+  <div class="container" style="padding:3rem 0;max-width:640px">
+    <form
+      id="suggest-form"
+      action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+      method="POST"
+    >
+      <!-- Replace YOUR_FORMSPREE_ID with your Formspree endpoint or equivalent -->
+
+      <div class="form-group">
+        <label for="restaurant-name">Restaurant name *</label>
+        <input
+          type="text"
+          id="restaurant-name"
+          name="restaurant_name"
+          required
+          value={prefillName}
+          placeholder="e.g. The Windmill"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address *</label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          required
+          placeholder="e.g. 86 Clapham Old Town, London SW4 0JU"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="neighbourhood">Neighbourhood *</label>
+        <select id="neighbourhood" name="neighbourhood" required>
+          <option value="">Select neighbourhood</option>
+          <option>Clapham</option>
+          <option>Notting Hill</option>
+          <option>Islington</option>
+          <option>Richmond</option>
+          <option>Shoreditch</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="why">Why is it great for families? *</label>
+        <textarea
+          id="why"
+          name="why_family_friendly"
+          required
+          placeholder="Tell us what makes it special — kids menu? Great outdoor space? Staff who love children? Buggy friendly?"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="your-email">Your email (optional — only used if we need to follow up)</label>
+        <input
+          type="email"
+          id="your-email"
+          name="submitter_email"
+          placeholder="you@example.com"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="font-size:1rem;padding:0.85rem 2rem">
+        Submit suggestion →
+      </button>
+
+      <p style="margin-top:1rem;font-size:0.8rem;color:var(--color-text-muted)">
+        We review all submissions within 7 days. We can't add every restaurant, but we'll research every suggestion.
+      </p>
+    </form>
+  </div>
+</Base>

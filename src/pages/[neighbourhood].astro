@@ -1,0 +1,156 @@
+---
+import Base from '../layouts/Base.astro';
+import ListingCard from '../components/ListingCard.astro';
+import FilterBar from '../components/FilterBar.astro';
+import {
+  restaurants,
+  getRestaurantsByNeighbourhood,
+  neighbourhoodMeta,
+  boroughMeta,
+  type Neighbourhood,
+} from '../data/restaurants';
+
+export function getStaticPaths() {
+  return Object.keys(neighbourhoodMeta).map((slug) => ({
+    params: { neighbourhood: slug },
+  }));
+}
+
+const { neighbourhood } = Astro.params as { neighbourhood: Neighbourhood };
+const meta = neighbourhoodMeta[neighbourhood];
+const borough = boroughMeta[meta.borough];
+const listings = getRestaurantsByNeighbourhood(neighbourhood);
+const featured = listings.filter((r) => r.featured);
+const regular = listings.filter((r) => !r.featured);
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://kidfriendlylondon.co.uk' },
+    { '@type': 'ListItem', position: 2, name: borough.name, item: `https://kidfriendlylondon.co.uk/${meta.borough}` },
+    { '@type': 'ListItem', position: 3, name: meta.name, item: `https://kidfriendlylondon.co.uk/${neighbourhood}` },
+  ],
+};
+
+const pageTitle = `Kid-Friendly Restaurants in ${meta.name} | Kid Friendly London`;
+const pageDescription = `The best family restaurants in ${meta.name}, London. ${meta.description} Filter by highchairs, kids menu, outdoor space, buggy access and more. ${listings.length} enriched listings.`;
+---
+
+<Base
+  title={pageTitle}
+  description={pageDescription}
+  schema={breadcrumbSchema}
+>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span>›</span>
+        <a href={`/${meta.borough}`}>{borough.name}</a>
+        <span>›</span>
+        <span>{meta.name}</span>
+      </nav>
+
+      <p class="page-hero__tag">Family dining in {meta.name}</p>
+      <h1>Kid-Friendly Restaurants in {meta.name}</h1>
+      <p style="color:var(--color-text-muted);max-width:65ch;margin-top:0.75rem;font-size:1.05rem">
+        {meta.description}
+      </p>
+
+      <div class="page-hero__stats">
+        <div class="stat">
+          <span class="stat__value">{listings.length}</span>
+          <span class="stat__label">restaurants reviewed</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value">{featured.length}</span>
+          <span class="stat__label">featured picks</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value">{listings.filter(r => r.kidsMenu === 'yes').length}</span>
+          <span class="stat__label">with kids menus</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value">{listings.filter(r => r.outdoorSpace === 'yes').length}</span>
+          <span class="stat__label">with outdoor space</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container" style="padding-top:2rem;padding-bottom:4rem">
+    <!-- AdSense: between listings -->
+    <div class="ad-unit" style="margin-bottom:1.5rem">Advertisement</div>
+
+    <!-- Filter bar -->
+    <FilterBar />
+
+    <!-- Featured first -->
+    {featured.length > 0 && (
+      <div style="margin-bottom:2.5rem">
+        <h2 style="margin-bottom:1rem;font-size:1.1rem;color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.05em">
+          ⭐ Featured in {meta.name}
+        </h2>
+        <div class="listings-grid">
+          {featured.map((r) => <ListingCard restaurant={r} />)}
+        </div>
+      </div>
+    )}
+
+    {regular.length > 0 && (
+      <div>
+        <h2 style="margin-bottom:1rem;font-size:1.1rem;color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.05em">
+          All restaurants in {meta.name}
+        </h2>
+        <div class="listings-grid" id="listings-grid">
+          {regular.map((r) => <ListingCard restaurant={r} />)}
+        </div>
+        <div id="no-results" class="no-results" style="display:none">
+          <p>No restaurants match your current filters. <button class="filter-reset" onclick="document.getElementById('filter-reset').click()">Clear filters</button></p>
+        </div>
+      </div>
+    )}
+
+    <!-- AdSense: sidebar/between -->
+    <div class="ad-unit" style="margin-top:2rem">Advertisement</div>
+
+    <!-- Borough link -->
+    <div style="margin-top:2.5rem;padding:1.5rem;background:var(--color-bg-soft);border-radius:var(--radius-md);border:1px solid var(--color-border)">
+      <p style="font-size:0.9rem;color:var(--color-text-muted);margin-bottom:0.5rem">
+        Part of {borough.name}
+      </p>
+      <h3 style="margin-bottom:0.5rem">Explore more of {borough.name}</h3>
+      <p style="color:var(--color-text-muted);font-size:0.9rem;margin-bottom:1rem">
+        {borough.description}
+      </p>
+      <a href={`/${meta.borough}`} class="btn btn-outline">
+        See all {borough.name} restaurants →
+      </a>
+    </div>
+
+    <!-- Get featured CTA -->
+    <div style="margin-top:1.5rem;padding:1.5rem;background:linear-gradient(135deg,#fff5f2,#fef3e8);border-radius:var(--radius-md);border:1px solid var(--color-border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+      <div>
+        <h3 style="margin-bottom:0.25rem">Own a restaurant in {meta.name}?</h3>
+        <p style="font-size:0.9rem;color:var(--color-text-muted)">Get featured at the top of this page for £29/month. Reach {listings.length > 0 ? 'hundreds of' : ''} local families actively searching for family dining.</p>
+      </div>
+      <a href="/get-featured" class="btn btn-primary">Get Featured →</a>
+    </div>
+  </div>
+
+  <!-- Email capture -->
+  <section class="email-signup">
+    <div class="container">
+      <h2>Get our free guide: London's 20 best restaurants for under-5s</h2>
+      <p>Monthly roundups, new openings, and the best family dining in {meta.name} and across London.</p>
+      <form class="email-form" action="#" method="POST">
+        <input type="email" name="EMAIL" placeholder="Your email address" required />
+        <button type="submit">Get the free guide →</button>
+      </form>
+      <p class="email-signup__small">No spam. Unsubscribe any time.</p>
+    </div>
+  </section>
+</Base>

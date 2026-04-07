@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Get Your Restaurant Featured | Kid Friendly London"
+  description="Feature your restaurant at the top of your neighbourhood page and reach hundreds of London families actively searching for family dining. £29/month."
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="page-hero__tag">For restaurant owners</p>
+      <h1>Get Your Restaurant Featured</h1>
+      <p style="color:var(--color-text-muted);max-width:60ch;margin-top:0.75rem">
+        Reach London parents actively searching for family-friendly restaurants in your neighbourhood.
+      </p>
+    </div>
+  </section>
+
+  <div class="container" style="padding:3rem 0">
+    <div style="display:grid;grid-template-columns:1fr 400px;gap:3rem;align-items:start">
+      <div>
+        <h2 style="margin-bottom:1.5rem">What you get</h2>
+        <ul style="display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem">
+          {[
+            ['📌', 'Pinned at the top of your neighbourhood page — above all free listings'],
+            ['⭐', 'Featured badge on your listing card and detail page'],
+            ['📊', 'Reach parents who are actively searching — high-intent traffic'],
+            ['🔗', 'Badge embed code to display on your own website'],
+            ['📝', 'Full enriched listing with all attributes, photos, and description'],
+            ['📧', 'Monthly performance report with page views and clicks'],
+          ].map(([icon, text]) => (
+            <li style="display:flex;gap:0.75rem;align-items:flex-start;padding:0.75rem;background:var(--color-bg-soft);border-radius:var(--radius-sm);border:1px solid var(--color-border)">
+              <span style="font-size:1.3rem;flex-shrink:0">{icon}</span>
+              <span>{text}</span>
+            </li>
+          ))}
+        </ul>
+
+        <h2 style="margin-bottom:1rem">Pricing</h2>
+        <div style="background:linear-gradient(135deg,#fff5f2,#fef3e8);border:2px solid var(--color-primary);border-radius:var(--radius-md);padding:2rem;max-width:380px">
+          <div style="font-size:2.5rem;font-weight:800;color:var(--color-primary)">£29<span style="font-size:1rem;font-weight:400;color:var(--color-text-muted)">/month</span></div>
+          <p style="margin:0.5rem 0 1.5rem;color:var(--color-text-muted)">Cancel any time. No contracts. No setup fees.</p>
+          <a href="#enquire" class="btn btn-primary" style="font-size:1rem;padding:0.85rem 2rem">
+            Enquire now →
+          </a>
+        </div>
+
+        <p style="margin-top:1rem;font-size:0.875rem;color:var(--color-text-muted)">
+          Prices are introductory. Early adopters lock in £29/month for life. Rate will increase as traffic grows.
+        </p>
+      </div>
+
+      <div id="enquire">
+        <div class="sidebar-card" style="position:sticky;top:80px">
+          <h3>Enquire about a featured listing</h3>
+          <form
+            action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+            method="POST"
+          >
+            <div class="form-group">
+              <label for="rest-name">Restaurant name *</label>
+              <input type="text" id="rest-name" name="restaurant_name" required />
+            </div>
+            <div class="form-group">
+              <label for="contact-name">Your name *</label>
+              <input type="text" id="contact-name" name="contact_name" required />
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email address *</label>
+              <input type="email" id="contact-email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="neighbourhood-sel">Neighbourhood *</label>
+              <select id="neighbourhood-sel" name="neighbourhood" required>
+                <option value="">Select</option>
+                <option>Clapham</option>
+                <option>Notting Hill</option>
+                <option>Islington</option>
+                <option>Richmond</option>
+                <option>Shoreditch</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:0.85rem">
+              Send enquiry →
+            </button>
+            <p style="font-size:0.75rem;color:var(--color-text-muted);margin-top:0.75rem;text-align:center">
+              We'll respond within 48 hours.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>

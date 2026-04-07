@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.designmynight.com)",
+      "WebFetch(domain:globetotting.com)",
+      "WebFetch(domain:www.squaremeal.co.uk)",
+      "WebFetch(domain:silverspoonlondon.co.uk)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(awk 'NR==81' src/data/restaurants.ts)",
+      "Bash(python3:*)",
+      "Bash(awk 'NR==12' src/data/restaurants.ts)",
+      "Bash(node -e \"const p = require\\('./node_modules/astro/package.json'\\); console.log\\('astro:', p.version\\)\")",
+      "Bash(node -e \"const p = require\\('./node_modules/@astrojs/sitemap/package.json'\\); console.log\\('sitemap:', p.version\\)\")",
+      "Bash(node -e ':*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m 'Initial build: 50 restaurant listings across 5 London neighbourhoods:*)"
+    ]
+  }
+}

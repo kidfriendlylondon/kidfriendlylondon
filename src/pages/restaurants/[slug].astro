@@ -1,0 +1,366 @@
+---
+import Base from '../../layouts/Base.astro';
+import ListingCard from '../../components/ListingCard.astro';
+import {
+  restaurants,
+  getRelatedRestaurants,
+  generateMetaDescription,
+  neighbourhoodMeta,
+  boroughMeta,
+} from '../../data/restaurants';
+
+export function getStaticPaths() {
+  return restaurants.map((r) => ({
+    params: { slug: r.slug },
+    props: { restaurant: r },
+  }));
+}
+
+const { restaurant: r } = Astro.props;
+const related = getRelatedRestaurants(r, 3);
+const neighbourhood = neighbourhoodMeta[r.neighbourhood];
+const borough = boroughMeta[r.borough];
+const metaDescription = generateMetaDescription(r);
+const siteUrl = 'https://kidfriendlylondon.co.uk';
+const listingUrl = `${siteUrl}/restaurants/${r.slug}`;
+
+// LocalBusiness JSON-LD schema
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: r.name,
+  description: r.shortDescription,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: r.address,
+    addressLocality: neighbourhood.name,
+    addressRegion: 'London',
+    postalCode: r.postcode,
+    addressCountry: 'GB',
+  },
+  ...(r.phone && { telephone: r.phone }),
+  ...(r.website && { url: r.website }),
+  ...(r.lat && r.lng && {
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: r.lat,
+      longitude: r.lng,
+    },
+  }),
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: r.googleRating,
+    reviewCount: r.reviewCount,
+    bestRating: 5,
+    worstRating: 1,
+  },
+  priceRange: r.priceRange,
+  servesCuisine: r.cuisineType,
+  openingHoursSpecification: Object.entries(r.openingHours)
+    .filter(([, hours]) => hours !== 'Closed')
+    .map(([day, hours]) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: `https://schema.org/${day}`,
+      opens: hours.split('–')[0]?.split(', ')[0],
+      closes: hours.split('–').pop()?.split(', ')[0],
+    })),
+  amenityFeature: [
+    r.kidsMenu === 'yes' && { '@type': 'LocationFeatureSpecification', name: "Children's Menu", value: true },
+    r.highchairs === 'yes' && { '@type': 'LocationFeatureSpecification', name: 'High Chairs', value: true },
+    r.outdoorSpace === 'yes' && { '@type': 'LocationFeatureSpecification', name: 'Outdoor Seating', value: true },
+    r.babyChanging === 'yes' && { '@type': 'LocationFeatureSpecification', name: 'Baby Changing Facilities', value: true },
+  ].filter(Boolean),
+};
+
+// Breadcrumb schema
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: borough.name, item: `${siteUrl}/${r.borough}` },
+    { '@type': 'ListItem', position: 3, name: neighbourhood.name, item: `${siteUrl}/${r.neighbourhood}` },
+    { '@type': 'ListItem', position: 4, name: r.name, item: listingUrl },
+  ],
+};
+
+const badgeEmbedCode = `<a href="${listingUrl}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#e8572a;color:#fff;padding:8px 16px;border-radius:6px;font-family:sans-serif;font-size:13px;font-weight:600;text-decoration:none;">🍽️ Kid-Friendly Approved · KidFriendlyLondon.co.uk</a>`;
+
+function attrStatus(val: string) {
+  if (val === 'yes') return { cls: 'attribute-item--yes', icon: '✅' };
+  if (val === 'no') return { cls: 'attribute-item--no', icon: '❌' };
+  return { cls: 'attribute-item--likely', icon: '🟡' };
+}
+---
+
+<Base
+  title={`${r.name} — Kid-Friendly Restaurant in ${neighbourhood.name} | Kid Friendly London`}
+  description={metaDescription}
+  canonical={listingUrl}
+  schema={[schema, breadcrumbSchema]}
+>
+  <!-- Breadcrumb -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span>›</span>
+      <a href={`/${r.borough}`}>{borough.name}</a>
+      <span>›</span>
+      <a href={`/${r.neighbourhood}`}>{neighbourhood.name}</a>
+      <span>›</span>
+      <span>{r.name}</span>
+    </nav>
+  </div>
+
+  <div class="listing-detail">
+    <div class="container">
+      <div class="listing-detail__grid">
+        <!-- Main content -->
+        <div>
+          <!-- Header -->
+          <div style="margin-bottom:1.5rem">
+            {r.featured && (
+              <span class="badge-featured" style="position:static;display:inline-block;margin-bottom:0.75rem">
+                ⭐ Featured Restaurant
+              </span>
+            )}
+            <p style="font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-muted);margin-bottom:0.35rem">
+              {r.cuisineType}
+            </p>
+            <h1 style="margin-bottom:0.75rem">{r.name}</h1>
+            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
+              <div class="rating">
+                <span class="rating__star">★</span>
+                <strong>{r.googleRating}</strong>
+                <span class="rating__count">({r.reviewCount.toLocaleString()} Google reviews)</span>
+              </div>
+              <span class="price-range">{r.priceRange}</span>
+              <span style="font-size:0.875rem;color:var(--color-text-muted)">📍 {r.address}</span>
+            </div>
+          </div>
+
+          <!-- Photos or placeholder -->
+          {r.photos.length >= 2 ? (
+            <div class="listing-detail__photos">
+              {r.photos.slice(0, 4).map((src, i) => (
+                <img
+                  src={src}
+                  alt={`${r.name} — photo ${i + 1}`}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  style={i === 0 ? 'grid-column:1/-1;height:280px;object-fit:cover;' : 'height:180px;object-fit:cover;'}
+                />
+              ))}
+            </div>
+          ) : (
+            <div class="listing-detail__photos--placeholder">🍽️</div>
+          )}
+
+          <!-- Description -->
+          <div class="listing-detail__section">
+            <h2>About {r.name}</h2>
+            <p>{r.description}</p>
+          </div>
+
+          <!-- Kid-friendly attributes -->
+          <div class="listing-detail__section">
+            <h2>Kid-friendly features</h2>
+            <div class="attribute-grid">
+              {[
+                { key: r.kidsMenu, label: "Kids menu", icon: '🍽️' },
+                { key: r.highchairs, label: 'Highchairs', icon: '🪑' },
+                { key: r.outdoorSpace, label: 'Outdoor space', icon: '🌿' },
+                { key: r.softPlay, label: 'Soft play area', icon: '🎠' },
+                { key: r.babyChanging, label: 'Baby changing', icon: '🚿' },
+                { key: r.buggyAccessible, label: 'Buggy accessible', icon: '🛻' },
+              ].map(({ key, label, icon }) => {
+                const { cls, icon: statusIcon } = attrStatus(key);
+                return (
+                  <div class={`attribute-item ${cls}`}>
+                    <span class="attribute-item__icon">{icon}</span>
+                    <div>
+                      <span class="attribute-item__label">{label}</span>
+                      <span class="attribute-item__value">{statusIcon} {key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                    </div>
+                  </div>
+                );
+              })}
+              <div class="attribute-item">
+                <span class="attribute-item__icon">🔊</span>
+                <div>
+                  <span class="attribute-item__label">Noise level</span>
+                  <span class="attribute-item__value">{r.noiseLevel.charAt(0).toUpperCase() + r.noiseLevel.slice(1)}</span>
+                </div>
+              </div>
+              <div class="attribute-item">
+                <span class="attribute-item__icon">📅</span>
+                <div>
+                  <span class="attribute-item__label">Booking</span>
+                  <span class="attribute-item__value">{r.bookingRequired.charAt(0).toUpperCase() + r.bookingRequired.slice(1)}</span>
+                </div>
+              </div>
+              <div class="attribute-item">
+                <span class="attribute-item__icon">👶</span>
+                <div>
+                  <span class="attribute-item__label">Best for</span>
+                  <span class="attribute-item__value">{r.bestForAgeRange.join(', ')}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          {r.tags.length > 0 && (
+            <div class="listing-detail__section">
+              <h2>Tags</h2>
+              <div class="attribute-tags">
+                {r.tags.map((tag) => (
+                  <span class="attr-tag">#{tag.replace(/-/g, ' ')}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Suggest edit -->
+          <div style="padding:1rem 1.25rem;background:var(--color-bg-soft);border-radius:var(--radius-sm);border:1px solid var(--color-border);font-size:0.875rem;color:var(--color-text-muted)">
+            Something wrong or out of date?
+            <a href={`/suggest?restaurant=${encodeURIComponent(r.name)}`} style="color:var(--color-primary)">
+              Suggest an edit →
+            </a>
+          </div>
+
+          <!-- AdSense -->
+          <div class="ad-unit">Advertisement</div>
+
+          <!-- Badge -->
+          <div class="badge-section">
+            <h3>🏅 Share the love — get a badge for your website</h3>
+            <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:0.75rem">
+              If you're the owner of {r.name}, embed this badge on your website to show parents you're kid-friendly approved. It links back to your listing here.
+            </p>
+            <div class="badge-preview">🍽️ Kid-Friendly Approved · KidFriendlyLondon.co.uk</div>
+            <p style="font-size:0.75rem;color:var(--color-text-muted);margin-bottom:0.4rem">Click to copy embed code:</p>
+            <div class="badge-embed-code" id="badge-code" title="Click to copy">{badgeEmbedCode}</div>
+          </div>
+
+          <!-- Related listings -->
+          {related.length > 0 && (
+            <div class="related-section">
+              <h2>You might also like</h2>
+              <div class="listings-grid">
+                {related.map((rel) => <ListingCard restaurant={rel} />)}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="listing-sidebar">
+          <!-- Booking -->
+          {r.openTableId ? (
+            <div class="sidebar-card">
+              <h3>Reserve a table</h3>
+              <a
+                href={`https://www.opentable.co.uk/r/${r.openTableId}`}
+                class="btn btn-primary booking-btn"
+                target="_blank"
+                rel="noopener sponsored"
+              >
+                🗓️ Book a table via OpenTable
+              </a>
+              <p style="font-size:0.75rem;color:var(--color-text-muted);text-align:center">
+                Free reservation — no fees
+              </p>
+            </div>
+          ) : (
+            <div class="sidebar-card">
+              <h3>Booking</h3>
+              <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:1rem">
+                {r.bookingRequired === 'yes'
+                  ? 'Booking is required for this restaurant. Call or visit their website.'
+                  : r.bookingRequired === 'recommended'
+                    ? 'Booking is recommended, especially on weekends.'
+                    : 'Walk-ins are welcome — no booking needed.'}
+              </p>
+              {r.phone && (
+                <a href={`tel:${r.phone}`} class="btn btn-outline booking-btn">
+                  📞 {r.phone}
+                </a>
+              )}
+              {r.website && (
+                <a href={r.website} class="btn btn-outline booking-btn" target="_blank" rel="noopener">
+                  🌐 Visit website
+                </a>
+              )}
+            </div>
+          )}
+
+          <!-- Details -->
+          <div class="sidebar-card">
+            <h3>Details</h3>
+            <table class="hours-table">
+              <tr><td>Address</td><td>{r.address}, {r.postcode}</td></tr>
+              <tr><td>Cuisine</td><td>{r.cuisineType}</td></tr>
+              <tr><td>Price range</td><td>{r.priceRange}</td></tr>
+              <tr><td>Neighbourhood</td><td><a href={`/${r.neighbourhood}`} style="color:var(--color-primary)">{neighbourhood.name}</a></td></tr>
+              <tr><td>Borough</td><td><a href={`/${r.borough}`} style="color:var(--color-primary)">{borough.name}</a></td></tr>
+            </table>
+          </div>
+
+          <!-- Opening hours -->
+          <div class="sidebar-card">
+            <h3>Opening hours</h3>
+            <table class="hours-table">
+              {Object.entries(r.openingHours).map(([day, hours]) => (
+                <tr>
+                  <td>{day.slice(0, 3)}</td>
+                  <td style={hours === 'Closed' ? 'color:var(--color-text-muted)' : ''}>{hours}</td>
+                </tr>
+              ))}
+            </table>
+          </div>
+
+          <!-- Map -->
+          {r.lat && r.lng && (
+            <div class="sidebar-card">
+              <h3>Location</h3>
+              <div class="map-embed">
+                <iframe
+                  src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyD-placeholder&q=${encodeURIComponent(r.name + ' ' + r.address)}&zoom=15`}
+                  width="100%"
+                  height="220"
+                  style="border:0"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title={`Map showing ${r.name}`}
+                ></iframe>
+              </div>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.name + ' ' + r.address)}`}
+                class="btn btn-outline btn-sm"
+                target="_blank"
+                rel="noopener"
+                style="margin-top:0.75rem;width:100%;justify-content:center"
+              >
+                Open in Google Maps →
+              </a>
+            </div>
+          )}
+
+          <!-- AdSense sidebar -->
+          <div class="ad-unit" style="min-height:250px">Advertisement</div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Copy badge embed code on click
+    const badgeEl = document.getElementById('badge-code');
+    badgeEl?.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(badgeEl.textContent ?? '');
+      const orig = badgeEl.style.background;
+      badgeEl.style.background = '#166534';
+      setTimeout(() => { badgeEl.style.background = orig; }, 1000);
+    });
+  </script>
+</Base>
