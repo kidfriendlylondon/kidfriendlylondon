@@ -18,7 +18,12 @@
       "Bash(git add:*)",
       "Bash(git commit -m 'Initial build: 50 restaurant listings across 5 London neighbourhoods:*)",
       "Bash(git rm:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(gh repo:*)",
+      "Bash(git config:*)",
+      "Bash(gh api:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)"
     ]
   }
 }
