@@ -140,14 +140,14 @@ function attrStatus(val: string) {
           </div>
 
           <!-- Photos or placeholder -->
-          {r.photos.length >= 2 ? (
-            <div class="listing-detail__photos">
+          {r.photos.length > 0 ? (
+            <div class={`listing-detail__photos${r.photos.length === 1 ? ' listing-detail__photos--single' : ''}`}>
               {r.photos.slice(0, 4).map((src, i) => (
                 <img
                   src={src}
                   alt={`${r.name} — photo ${i + 1}`}
                   loading={i === 0 ? 'eager' : 'lazy'}
-                  style={i === 0 ? 'grid-column:1/-1;height:280px;object-fit:cover;' : 'height:180px;object-fit:cover;'}
+                  style={r.photos.length === 1 ? 'grid-column:1/-1;height:320px;object-fit:cover;border-radius:var(--radius-md);' : i === 0 ? 'grid-column:1/-1;height:280px;object-fit:cover;' : 'height:180px;object-fit:cover;'}
                 />
               ))}
             </div>
