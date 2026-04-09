@@ -165,7 +165,7 @@ export const restaurants: Restaurant[] = [
       "The Windmill is a Clapham institution that genuinely gets families. With a dedicated kids menu, multiple highchairs, a large beer garden perfect for buggy parking, and baby changing facilities, it ticks every box. Reviews consistently mention how welcoming the staff are with young children — \"brought our double buggy and they just sorted it without a fuss.\" Sunday roasts are legendary and the kids eat free deal on weekdays makes this a Nappy Valley staple.",
     shortDescription:
       "A Clapham institution beloved by local families, with a kids menu, beer garden, and staff who actually mean it when they say child-friendly.",
-    photos: [],
+    photos: ["/images/restaurants/the-windmill-clapham-1.jpg", "/images/restaurants/the-windmill-clapham-2.jpg", "/images/restaurants/the-windmill-clapham-3.jpg"],
     featured: true,
     tags: ["sunday-roast", "beer-garden", "kids-eat-free", "dog-friendly"],
   },
@@ -207,7 +207,7 @@ export const restaurants: Restaurant[] = [
       "Megan's has become a go-to for Clapham and South West London families seeking a relaxed Mediterranean brunch or lunch. The colourful decor, spacious layout, and genuinely child-sized portions make it ideal for families with toddlers and primary-age kids. Multiple reviewers praise the staff for going above and beyond — colouring sheets appear without asking, highchairs are already at the table. The outdoor terrace handles buggies with ease.",
     shortDescription:
       "Colourful Mediterranean dining with a brilliant brunch, proper kids portions, and staff who actually love having children in.",
-    photos: [],
+    photos: ["/images/restaurants/megan-s-clapham-1.jpg", "/images/restaurants/megan-s-clapham-2.jpg", "/images/restaurants/megan-s-clapham-3.jpg"],
     featured: false,
     tags: ["brunch", "mediterranean", "outdoor-terrace", "colouring-sheets"],
   },
@@ -249,7 +249,7 @@ export const restaurants: Restaurant[] = [
       "Honest Burgers is the easy family crowd-pleaser. Kids love the classic burger format, the rosemary salted chips are legendary, and parents appreciate the no-booking policy and relaxed atmosphere. A dedicated kids burger and the fact that everyone leaves full and happy makes this a reliable Clapham family staple. Note: it's on the lively side — not ideal for newborns, but primary-age kids absolutely love it.",
     shortDescription:
       "Proper burgers and legendary rosemary chips in a no-booking, no-fuss environment that kids reliably love.",
-    photos: [],
+    photos: ["/images/restaurants/honest-burgers-clapham-1.jpg", "/images/restaurants/honest-burgers-clapham-2.jpg", "/images/restaurants/honest-burgers-clapham-3.jpg"],
     featured: false,
     tags: ["burgers", "no-booking", "walk-in", "kids-burger"],
   },
@@ -291,7 +291,7 @@ export const restaurants: Restaurant[] = [
       "One for parents who want a proper meal out with older children. Naughty Piglets doesn't have a specific kids menu but the small plates format works brilliantly — kids can graze, parents can eat properly. The Sunday lunch is exceptional. Best for confident primary-age eaters. Book well ahead.",
     shortDescription:
       "An adventurous small-plates restaurant for foodie families with older kids — no kids menu, but genuinely excellent food.",
-    photos: [],
+    photos: ["/images/restaurants/naughty-piglets-brixton-1.jpg", "/images/restaurants/naughty-piglets-brixton-2.jpg", "/images/restaurants/naughty-piglets-brixton-3.jpg"],
     featured: false,
     tags: ["small-plates", "natural-wine", "sunday-lunch", "date-night-with-kids"],
   },
@@ -333,7 +333,7 @@ export const restaurants: Restaurant[] = [
       "American BBQ is a reliable crowd-pleaser for families and Bodean's Clapham delivers every time. Racks of ribs, pulled pork, mac and cheese — the format means something for everyone. Kids eat free on certain days, the portions are enormous, and the atmosphere is reliably buzzy without being overwhelming. Multiple reviewers mention bringing babies in buggies without any issues.",
     shortDescription:
       "American BBQ that pleases everyone at the table — generous portions, kids eat free days, and a relaxed no-fuss atmosphere.",
-    photos: [],
+    photos: ["/images/restaurants/bodeans-clapham-1.jpg", "/images/restaurants/bodeans-clapham-2.jpg", "/images/restaurants/bodeans-clapham-3.jpg"],
     featured: false,
     tags: ["bbq", "american", "kids-eat-free", "ribs"],
   },
@@ -375,7 +375,7 @@ export const restaurants: Restaurant[] = [
       "Clapham's finest restaurant is more family-friendly than its Michelin star might suggest. Sunday lunch is the sweet spot — chef Adam Byatt's team are accommodating to families and the set menu format works for older children. Not for toddlers, but a genuinely special occasion restaurant for families with primary-age and older kids. The cooking is exceptional.",
     shortDescription:
       "Clapham's Michelin-starred gem — more family-friendly than you'd expect, especially for Sunday lunch with older children.",
-    photos: [],
+    photos: ["/images/restaurants/trinity-clapham-1.jpg", "/images/restaurants/trinity-clapham-2.jpg", "/images/restaurants/trinity-clapham-3.jpg"],
     featured: false,
     tags: ["michelin-star", "sunday-lunch", "fine-dining", "special-occasion"],
   },
@@ -459,7 +459,7 @@ export const restaurants: Restaurant[] = [
       "Pizza is the family failsafe and Pizza East does it properly — sourdough bases, quality toppings, and a kids menu that doesn't feel like an afterthought. The Portobello location has the best vibe and handles families well. Great for the 'everyone needs to agree' family meal occasion.",
     shortDescription:
       "Proper sourdough pizza in a buzzy setting — the universal family crowd-pleaser done really well.",
-    photos: [],
+    photos: ["/images/restaurants/pizza-east-clapham-1.jpg", "/images/restaurants/pizza-east-clapham-2.jpg", "/images/restaurants/pizza-east-clapham-3.jpg"],
     featured: false,
     tags: ["pizza", "sourdough", "kids-menu", "portobello"],
   },
@@ -501,7 +501,7 @@ export const restaurants: Restaurant[] = [
       "One of Clapham's most acclaimed restaurants, The Dairy champions seasonal British ingredients with genuine creativity. Sunday lunch is the family entry point — the rooftop terrace is magical in summer. Better for families with primary-age children who can engage with adventurous food. Not a baby destination but far more accommodating than its reputation suggests.",
     shortDescription:
       "Creative seasonal British cooking with a fantastic rooftop terrace — best for foodie families with older children.",
-    photos: [],
+    photos: ["/images/restaurants/the-dairy-clapham-1.jpg", "/images/restaurants/the-dairy-clapham-2.jpg", "/images/restaurants/the-dairy-clapham-3.jpg"],
     featured: false,
     tags: ["seasonal", "british", "rooftop", "sunday-lunch"],
   },
@@ -543,7 +543,7 @@ export const restaurants: Restaurant[] = [
       "Italian restaurants and families are a natural pairing, and Pausa in Clapham Old Town nails the formula. Pasta that kids actually eat, tiramisu for parents to fight over, a welcoming terrace for buggies, and staff who genuinely smile when families walk in. One reviewer specifically noted they came in with a newborn and a toddler and \"everyone couldn't have been more lovely.\"",
     shortDescription:
       "Welcoming Italian trattoria in the heart of Clapham Old Town — reliable, warm, and great for all ages including newborns.",
-    photos: [],
+    photos: ["/images/restaurants/pausa-clapham-1.jpg", "/images/restaurants/pausa-clapham-2.jpg", "/images/restaurants/pausa-clapham-3.jpg"],
     featured: false,
     tags: ["italian", "pasta", "baby-friendly", "outdoor-terrace"],
   },
@@ -587,7 +587,7 @@ export const restaurants: Restaurant[] = [
       "The Farmhouse is the quintessential Notting Hill family restaurant. All-day dining from breakfast through dinner, a spacious layout that handles buggies easily, a proper kids menu, and the kind of relaxed atmosphere where nobody minds if a toddler is having a moment. The Westbourne Grove terrace is perfect for sunny days with babies in arms.",
     shortDescription:
       "All-day dining done right — the quintessential Notting Hill family restaurant from breakfast through to dinner.",
-    photos: [],
+    photos: ["/images/restaurants/the-farmhouse-notting-hill-1.jpg", "/images/restaurants/the-farmhouse-notting-hill-2.jpg", "/images/restaurants/the-farmhouse-notting-hill-3.jpg"],
     featured: true,
     tags: ["all-day-dining", "brunch", "baby-friendly", "outdoor-terrace"],
   },
@@ -629,7 +629,7 @@ export const restaurants: Restaurant[] = [
       "Ottolenghi's original Notting Hill outpost is a rite of passage for food-loving London families. The shared-table format, the incredible counter display, and the fact that kids with even slightly adventurous palates will find something to love. Best for Saturday brunch with toddlers — come early, grab a pastry from the counter while you wait, and let the kids point at things they want to try.",
     shortDescription:
       "The Notting Hill original — a weekend brunch institution for families with curious eaters of any age.",
-    photos: [],
+    photos: ["/images/restaurants/ottolenghi-notting-hill-1.jpg", "/images/restaurants/ottolenghi-notting-hill-2.jpg", "/images/restaurants/ottolenghi-notting-hill-3.jpg"],
     featured: false,
     tags: ["brunch", "middle-eastern", "saturday-institution", "communal-tables"],
   },
@@ -671,7 +671,7 @@ export const restaurants: Restaurant[] = [
       "Granger & Co. is the Notting Hill family brunch destination — the fluffy ricotta hotcakes are Instagrammed by parents while kids demolish scrambled eggs and toast soldiers. The big windows, light space, and genuinely welcoming staff make it one of the most buggy-friendly restaurants in W11. The queue on Saturday mornings is testament to how much families love it. Book ahead or arrive before 9am.",
     shortDescription:
       "London's best brunch meets genuine family welcome — Granger & Co. is the Notting Hill weekend institution.",
-    photos: [],
+    photos: ["/images/restaurants/fishs-eddy-notting-hill-1.jpg", "/images/restaurants/fishs-eddy-notting-hill-2.jpg", "/images/restaurants/fishs-eddy-notting-hill-3.jpg"],
     featured: true,
     tags: ["brunch", "australian", "ricotta-hotcakes", "weekend-favourite"],
   },
@@ -713,7 +713,7 @@ export const restaurants: Restaurant[] = [
       "Tom Conran's legendary Notting Hill pub-restaurant is more family-friendly than its boisterous reputation suggests — but only upstairs. The dining room above is calmer, and the Irish stew and Guinness-stout clams are the kind of proper cooking that food-curious kids remember. Best for families with older, adventurous children. Note the pub downstairs is not buggy-friendly.",
     shortDescription:
       "A Notting Hill legend — the upstairs dining room is perfect for families with older, food-adventurous children.",
-    photos: [],
+    photos: ["/images/restaurants/the-cow-notting-hill-1.jpg", "/images/restaurants/the-cow-notting-hill-2.jpg", "/images/restaurants/the-cow-notting-hill-3.jpg"],
     featured: false,
     tags: ["gastropub", "seafood", "notting-hill-institution", "older-kids"],
   },
@@ -755,7 +755,7 @@ export const restaurants: Restaurant[] = [
       "A hidden neighbourhood gem that punches far above its weight. The Turkish-Mediterranean menu offers brilliant value — mezze platters, flatbreads, and dips that kids love picking at. Outdoor seating handles buggies well and the atmosphere is relaxed and welcoming all day. One of Notting Hill's best kept secrets for families who don't want to spend a fortune.",
     shortDescription:
       "A neighbourhood gem serving brilliant Turkish-Mediterranean food at prices that make Notting Hill feel accessible.",
-    photos: [],
+    photos: ["/images/restaurants/e-mono-notting-hill-1.jpg", "/images/restaurants/e-mono-notting-hill-2.jpg", "/images/restaurants/e-mono-notting-hill-3.jpg"],
     featured: false,
     tags: ["turkish", "mediterranean", "value", "mezze", "hidden-gem"],
   },
@@ -797,7 +797,7 @@ export const restaurants: Restaurant[] = [
       "The legendary pastéis de nata from Lisboa Patisserie are a Notting Hill pilgrimage for every family in West London. A relaxed café experience with excellent Portuguese coffee, the world's best custard tarts, and seating outside on Golborne Road. The perfect Saturday morning stop with a buggy before exploring Portobello Market. Kids and adults equally delighted.",
     shortDescription:
       "Legendary custard tarts and the best Portuguese coffee in London — a compulsory Notting Hill family pilgrimage.",
-    photos: [],
+    photos: ["/images/restaurants/lidgate-butcher-cafe-notting-hill-1.jpg", "/images/restaurants/lidgate-butcher-cafe-notting-hill-2.jpg", "/images/restaurants/lidgate-butcher-cafe-notting-hill-3.jpg"],
     featured: false,
     tags: ["cafe", "portuguese", "custard-tarts", "coffee", "portobello"],
   },
@@ -839,7 +839,7 @@ export const restaurants: Restaurant[] = [
       "Kitchen W8 is the special occasion restaurant for Notting Hill and Kensington families. Michelin-starred cooking in a more relaxed setting than you'd expect — the Sunday lunch in particular attracts well-behaved primary-age children and their parents. The set menu is excellent value for the quality. Not for toddlers, but a memorable experience for older children learning to appreciate fine food.",
     shortDescription:
       "Michelin-starred cooking in a more relaxed Kensington setting — perfect for a special family occasion with older children.",
-    photos: [],
+    photos: ["/images/restaurants/kitchen-w8-notting-hill-1.jpg", "/images/restaurants/kitchen-w8-notting-hill-2.jpg", "/images/restaurants/kitchen-w8-notting-hill-3.jpg"],
     featured: false,
     tags: ["michelin-star", "sunday-lunch", "special-occasion", "kensington"],
   },
@@ -881,7 +881,7 @@ export const restaurants: Restaurant[] = [
       "The spectacular Gothic-meets-Baroque interior at Beach Blanket Babylon is genuinely jaw-dropping for children and adults alike. The weekend brunch is a Notting Hill institution for families — kids are fascinated by the decor, parents love the cocktails and the Eggs Benedict, and the service team genuinely welcomes children. The garden is a summer bonus.",
     shortDescription:
       "The most visually spectacular restaurant in Notting Hill — children are genuinely amazed by the Gothic interior.",
-    photos: [],
+    photos: ["/images/restaurants/beach-blanket-babylon-notting-hill-1.jpg", "/images/restaurants/beach-blanket-babylon-notting-hill-2.jpg", "/images/restaurants/beach-blanket-babylon-notting-hill-3.jpg"],
     featured: false,
     tags: ["brunch", "spectacular-decor", "weekend", "garden", "instagrammable"],
   },
@@ -923,7 +923,7 @@ export const restaurants: Restaurant[] = [
       "Run by three brothers with their own farm in Sussex, The Shed champions genuinely seasonal British cooking. The rustic farm-shed decor is charming and children are surprisingly engaged by the provenance story — 'this pig came from our farm.' Sunday lunch is especially recommended for families with older children who appreciate quality ingredients. Compact space means not ideal for buggies.",
     shortDescription:
       "Farm-to-table cooking in a charming rustic setting — a great story for kids and exceptional food for parents.",
-    photos: [],
+    photos: ["/images/restaurants/lowiczanka-notting-hill-1.jpg", "/images/restaurants/lowiczanka-notting-hill-2.jpg", "/images/restaurants/lowiczanka-notting-hill-3.jpg"],
     featured: false,
     tags: ["farm-to-table", "british", "sustainable", "sunday-lunch", "older-kids"],
   },
@@ -965,7 +965,7 @@ export const restaurants: Restaurant[] = [
       "A tiny American diner that kids absolutely love — the booth seating, the retro diner vibe, the milkshakes. Lucky Seven is a Notting Hill institution that families return to again and again. The burgers are genuinely good, the atmosphere is fun, and the prices are the most reasonable thing in W11. Note it's very compact — not suitable for buggies — but primary-age children find the whole experience brilliant.",
     shortDescription:
       "A retro American diner institution that kids adore — brilliant milkshakes, booths, and the best value in Notting Hill.",
-    photos: [],
+    photos: ["/images/restaurants/lucky-seven-notting-hill-1.jpg", "/images/restaurants/lucky-seven-notting-hill-2.jpg", "/images/restaurants/lucky-seven-notting-hill-3.jpg"],
     featured: false,
     tags: ["american-diner", "milkshakes", "burgers", "retro", "booths", "value"],
   },
@@ -1009,7 +1009,7 @@ export const restaurants: Restaurant[] = [
       "Breakfast at Ottolenghi Islington is a North London family rite of passage. The bountiful counter display, the incredible baked goods, and the sharing-plate format mean that even the fussiest toddler will find something to eat. Saturday morning is peak family time. The Islington branch is the liveliest of the Ottolenghi empire — book a table or come early.",
     shortDescription:
       "A North London family rite of passage — Saturday brunch at Ottolenghi Islington is the definition of a great family morning.",
-    photos: [],
+    photos: ["/images/restaurants/ottolenghi-islington-1.jpg", "/images/restaurants/ottolenghi-islington-2.jpg", "/images/restaurants/ottolenghi-islington-3.jpg"],
     featured: true,
     tags: ["brunch", "middle-eastern", "upper-street", "saturday-institution"],
   },
@@ -1051,7 +1051,7 @@ export const restaurants: Restaurant[] = [
       "Trullo is one of London's great Italian restaurants and families with older children will have a genuinely special meal here. The fresh pasta is some of the best in the city, the charcoal grill produces exceptional meats, and the Sunday lunch atmosphere is warm and relaxed. Not a place for toddlers or buggies — the space is compact and the vibe aspirational — but for families wanting a proper Italian occasion, this is the destination.",
     shortDescription:
       "One of London's great Italian restaurants — genuinely exceptional pasta and a special occasion feel for older children.",
-    photos: [],
+    photos: ["/images/restaurants/trullo-islington-1.jpg", "/images/restaurants/trullo-islington-2.jpg", "/images/restaurants/trullo-islington-3.jpg"],
     featured: false,
     tags: ["italian", "pasta", "charcoal-grill", "special-occasion", "older-kids"],
   },
@@ -1093,7 +1093,7 @@ export const restaurants: Restaurant[] = [
       "Tucked into Camden Passage antiques market, The Elk in the Woods is a charming all-day café-restaurant that handles families beautifully. Brunch is the main event — avocado toast for parents, French toast and pancakes for kids, excellent coffee. The outdoor seating on the passage is perfect for buggies and warm days. Multiple reviews mention arriving with newborns and being welcomed warmly.",
     shortDescription:
       "A charming Camden Passage brunch spot that handles everything from newborns to primary schoolers with genuine warmth.",
-    photos: [],
+    photos: ["/images/restaurants/the-elk-in-the-woods-islington-1.jpg", "/images/restaurants/the-elk-in-the-woods-islington-2.jpg", "/images/restaurants/the-elk-in-the-woods-islington-3.jpg"],
     featured: false,
     tags: ["brunch", "camden-passage", "baby-friendly", "outdoor-seating"],
   },
@@ -1135,7 +1135,7 @@ export const restaurants: Restaurant[] = [
       "A tiny, perfectly formed Islington pub with exceptional food and a welcoming atmosphere for families with well-behaved older children. The compact space means it's not practical for toddlers or buggies, but primary-age children who can sit and enjoy a proper pub lunch will love the atmosphere. The pies are outstanding.",
     shortDescription:
       "A tiny perfect gastropub with exceptional pies — better for families with older, well-behaved children.",
-    photos: [],
+    photos: ["/images/restaurants/the-charles-lamb-islington-1.jpg", "/images/restaurants/the-charles-lamb-islington-2.jpg", "/images/restaurants/the-charles-lamb-islington-3.jpg"],
     featured: false,
     tags: ["gastropub", "pies", "intimate", "islington-village", "older-kids"],
   },
@@ -1177,7 +1177,7 @@ export const restaurants: Restaurant[] = [
       "GEM is a Kurdish restaurant on Upper Street that offers extraordinary value and the kind of mezze format that works brilliantly for families — kids graze on flatbreads, hummus, and grilled meats while parents eat properly. The warmth of the welcome extends to children and the BYO policy keeps costs down. One of Islington's best kept family secrets.",
     shortDescription:
       "Extraordinary value Kurdish mezze on Upper Street — a family secret that the locals know and love.",
-    photos: [],
+    photos: ["/images/restaurants/gem-islington-1.jpg", "/images/restaurants/gem-islington-2.jpg", "/images/restaurants/gem-islington-3.jpg"],
     featured: false,
     tags: ["kurdish", "middle-eastern", "mezze", "byob", "value", "upper-street"],
   },
@@ -1219,7 +1219,7 @@ export const restaurants: Restaurant[] = [
       "Frederick's has been an Islington institution for over 50 years and its beautiful conservatory and garden make it one of the most civilised places to take children in North London. The kids menu is thoughtful, the staff genuinely experienced with families, and the Sunday lunch is outstanding. Baby changing is available and buggies are accommodated without fuss.",
     shortDescription:
       "A 50-year Islington institution with a beautiful conservatory garden — one of North London's most civilised family lunches.",
-    photos: [],
+    photos: ["/images/restaurants/fredericks-islington-1.jpg", "/images/restaurants/fredericks-islington-2.jpg", "/images/restaurants/fredericks-islington-3.jpg"],
     featured: true,
     tags: ["conservatory", "garden", "sunday-lunch", "islington-institution", "special-occasion"],
   },
@@ -1261,7 +1261,7 @@ export const restaurants: Restaurant[] = [
       "The Breakfast Club has been feeding London families for two decades and the Islington branch at Camden Passage is one of the best. All-day brunch format means pancakes at any hour, the kids menu is genuinely well-designed, and the playful American diner atmosphere means even the wait on busy weekends feels fun. Expect queues on Saturday mornings.",
     shortDescription:
       "The all-day brunch institution — pancakes at any hour, a proper kids menu, and a lively atmosphere that kids love.",
-    photos: [],
+    photos: ["/images/restaurants/the-breakfast-club-islington-1.jpg", "/images/restaurants/the-breakfast-club-islington-2.jpg", "/images/restaurants/the-breakfast-club-islington-3.jpg"],
     featured: false,
     tags: ["brunch", "american", "all-day-breakfast", "camden-passage", "queues-but-worth-it"],
   },
@@ -1303,7 +1303,7 @@ export const restaurants: Restaurant[] = [
       "Adjacent to the Almeida Theatre, this elegant French restaurant offers one of Islington's best pre-theatre menus — perfect for families attending the theatre with older children. The set lunch is excellent value and the staff are well-practised at handling families attending early shows. A genuinely civilised special occasion for families with primary-age and older children.",
     shortDescription:
       "Elegant French dining next to the Almeida Theatre — ideal for pre-theatre family dinners with older children.",
-    photos: [],
+    photos: ["/images/restaurants/the-almeida-islington-1.jpg", "/images/restaurants/the-almeida-islington-2.jpg", "/images/restaurants/the-almeida-islington-3.jpg"],
     featured: false,
     tags: ["french", "pre-theatre", "almeida-theatre", "set-lunch", "special-occasion"],
   },
@@ -1345,7 +1345,7 @@ export const restaurants: Restaurant[] = [
       "Primrose Hill's favourite family café-restaurant, Greenberry has earned its loyal following through consistently excellent food and unwavering welcome for families. From morning coffee and pastries through to evening meals, the all-day format accommodates family schedules perfectly. The large buggy-friendly layout and attentive baby-changing facilities make it a neighbourhood staple for parents with young children.",
     shortDescription:
       "Primrose Hill's beloved family café-restaurant — exceptional all-day dining with a genuinely warm welcome for all ages.",
-    photos: [],
+    photos: ["/images/restaurants/greenberry-islington-1.jpg", "/images/restaurants/greenberry-islington-2.jpg", "/images/restaurants/greenberry-islington-3.jpg"],
     featured: false,
     tags: ["primrose-hill", "all-day", "café", "baby-friendly", "neighbourhood-staple"],
   },
@@ -1387,7 +1387,7 @@ export const restaurants: Restaurant[] = [
       "One of Islington's finest gastropubs, The Draper's Arms is set in a beautifully restored Georgian building and offers consistently excellent food. The large garden is wonderful for families in summer and the Sunday roast is among the best in North London. Staff are welcoming to families and the elevated food quality means parents get a proper meal while children are kept well-fed.",
     shortDescription:
       "One of Islington's finest gastropubs with a beautiful garden and a Sunday roast that parents talk about for weeks.",
-    photos: [],
+    photos: ["/images/restaurants/the-drapers-arms-islington-1.jpg", "/images/restaurants/the-drapers-arms-islington-2.jpg", "/images/restaurants/the-drapers-arms-islington-3.jpg"],
     featured: false,
     tags: ["gastropub", "garden", "sunday-roast", "georgian", "barnsbury"],
   },
@@ -1431,7 +1431,7 @@ export const restaurants: Restaurant[] = [
       "Set in a stunning Arts and Crafts building opposite Richmond Park, The Dysart is a genuinely special restaurant for families marking a special occasion. The Sunday lunch is exceptional — properly creative British cooking in one of the most beautiful dining rooms in South West London. Not for toddlers, but primary-age children who appreciate good food will remember this meal.",
     shortDescription:
       "An exceptional Arts & Crafts dining room opposite Richmond Park — a genuinely memorable special occasion for food-loving families.",
-    photos: [],
+    photos: ["/images/restaurants/the-dysart-richmond-1.jpg", "/images/restaurants/the-dysart-richmond-2.jpg", "/images/restaurants/the-dysart-richmond-3.jpg"],
     featured: true,
     tags: ["michelin-star", "richmond-park", "sunday-lunch", "special-occasion", "arts-crafts"],
   },
@@ -1473,7 +1473,7 @@ export const restaurants: Restaurant[] = [
       "The White Cross is the perfect post-Richmond-Park pub lunch destination — a sprawling riverside terrace, good gastropub food, and a genuinely welcoming approach to families. The outdoor space is one of the best in South West London for families: large, sunny, and buggy-accessible. After a morning in the park, this is exactly what parents and children need.",
     shortDescription:
       "The perfect post-Richmond-Park lunch — a brilliant riverside terrace that welcomes families with open arms.",
-    photos: [],
+    photos: ["/images/restaurants/the-white-cross-richmond-1.jpg", "/images/restaurants/the-white-cross-richmond-2.jpg", "/images/restaurants/the-white-cross-richmond-3.jpg"],
     featured: false,
     tags: ["riverside", "terrace", "post-park", "richmond-park", "dog-friendly"],
   },
@@ -1515,7 +1515,7 @@ export const restaurants: Restaurant[] = [
       "A Richmond institution serving Breton crêpes and galettes for over 30 years. Chez Lindsay is a family favourite because the format — sweet and savoury pancakes — is universally loved by children and parents alike. Kids naturally gravitate to the crêpe Suzette and chocolate versions while parents appreciate the galette complète and Breton cider. Utterly reliable and charming.",
     shortDescription:
       "30 years of Breton crêpes in Richmond — the format that every child loves and every parent appreciates.",
-    photos: [],
+    photos: ["/images/restaurants/chez-lindsay-richmond-1.jpg", "/images/restaurants/chez-lindsay-richmond-2.jpg", "/images/restaurants/chez-lindsay-richmond-3.jpg"],
     featured: false,
     tags: ["french", "breton", "crepes", "galettes", "richmond-institution", "cider"],
   },
@@ -1557,7 +1557,7 @@ export const restaurants: Restaurant[] = [
       "Petersham Nurseries Café is one of the most magical dining environments in London — a working plant nursery with a stunning café serving exceptional Italian-inspired food. For families, it's a genuinely special experience: children are fascinated by the nursery setting, the outdoor terrace handles buggies, and the lunch menu is creative and seasonal. Expensive but worth every penny for a special family lunch.",
     shortDescription:
       "One of London's most magical dining environments — a working nursery with exceptional Italian food and a truly unique atmosphere.",
-    photos: [],
+    photos: ["/images/restaurants/the-richmond-restaurant-1.jpg", "/images/restaurants/the-richmond-restaurant-2.jpg", "/images/restaurants/the-richmond-restaurant-3.jpg"],
     featured: false,
     tags: ["garden-café", "nursery", "italian", "seasonal", "magical", "special-occasion"],
   },
@@ -1599,7 +1599,7 @@ export const restaurants: Restaurant[] = [
       "Gaucho Richmond is the go-to for Richmond families celebrating a special occasion. The steaks are exceptional, the kids menu is genuinely thoughtful (not just fish fingers), and the outdoor terrace handles families well in summer. Multiple reviews single out the Richmond branch for being more family-accommodating than other Gaucho locations.",
     shortDescription:
       "Richmond's premier steakhouse — exceptional Argentine beef and a genuinely family-friendly approach to a special occasion.",
-    photos: [],
+    photos: ["/images/restaurants/gaucho-richmond-1.jpg", "/images/restaurants/gaucho-richmond-2.jpg", "/images/restaurants/gaucho-richmond-3.jpg"],
     featured: false,
     tags: ["steak", "argentine", "special-occasion", "terrace", "richmond"],
   },
@@ -1641,7 +1641,7 @@ export const restaurants: Restaurant[] = [
       "On Richmond Green with views of one of London's most beautiful public spaces, The Prince's Head is the ideal family pub lunch location. The outdoor seating is generous, buggies are welcomed, and the food is honest pub grub that children reliably enjoy. After lunch, Richmond Green provides ready-made entertainment for younger children. A perfect Richmond formula.",
     shortDescription:
       "The perfect Richmond Green pub lunch — great outdoor space, welcoming to all ages, and with the green as a ready-made playground.",
-    photos: [],
+    photos: ["/images/restaurants/the-princes-head-richmond-1.jpg", "/images/restaurants/the-princes-head-richmond-2.jpg", "/images/restaurants/the-princes-head-richmond-3.jpg"],
     featured: false,
     tags: ["richmond-green", "pub", "outdoor-seating", "walk-in", "baby-friendly"],
   },
@@ -1683,7 +1683,7 @@ export const restaurants: Restaurant[] = [
       "A neighbourhood gem in St Margarets that punches far above its weight in the quality stakes. Brula's French cooking is genuine and accomplished — the set lunch is exceptional value and the Sunday roast brings local families back week after week. Better for families with primary-age and older children who can appreciate the quality; the intimate atmosphere is not ideal for toddlers.",
     shortDescription:
       "A neighbourhood French gem in St Margarets — exceptional cooking and Sunday roasts that bring local families back week after week.",
-    photos: [],
+    photos: ["/images/restaurants/brula-richmond-1.jpg", "/images/restaurants/brula-richmond-2.jpg", "/images/restaurants/brula-richmond-3.jpg"],
     featured: false,
     tags: ["french", "set-lunch", "sunday-roast", "neighbourhood-gem", "st-margarets"],
   },
@@ -1725,7 +1725,7 @@ export const restaurants: Restaurant[] = [
       "Tucked just off Richmond town centre in a charming churchyard setting, La Buvette is an authentic French bistro that has been welcoming Richmond families for years. The moules marinières are justifiably famous, the crêpes make children very happy, and the outdoor terrace by the church is one of Richmond's most charming dining spots.",
     shortDescription:
       "A charming French bistro in a churchyard setting — moules, crêpes, and terrace dining that Richmond families adore.",
-    photos: [],
+    photos: ["/images/restaurants/la-buvette-richmond-1.jpg", "/images/restaurants/la-buvette-richmond-2.jpg", "/images/restaurants/la-buvette-richmond-3.jpg"],
     featured: false,
     tags: ["french", "bistro", "moules", "churchyard", "terrace", "richmond"],
   },
@@ -1767,7 +1767,7 @@ export const restaurants: Restaurant[] = [
       "Inside Richmond Park with panoramic views across the Thames Valley, Pembroke Lodge Tea Rooms is the ultimate family destination. After walking through the park and spotting deer, the tea rooms provide exactly what families need: a proper cream tea, kids' sandwiches, and the most spectacular view from the garden terrace. An unmissable Richmond family experience.",
     shortDescription:
       "Inside Richmond Park with stunning views — the perfect family stop for cream teas after a deer-spotting walk.",
-    photos: [],
+    photos: ["/images/restaurants/the-terrace-richmond-park-1.jpg", "/images/restaurants/the-terrace-richmond-park-2.jpg", "/images/restaurants/the-terrace-richmond-park-3.jpg"],
     featured: false,
     tags: ["richmond-park", "tea-rooms", "cream-tea", "panoramic-views", "deer", "all-day"],
   },
@@ -1809,7 +1809,7 @@ export const restaurants: Restaurant[] = [
       "The Sunday lunch at The Petersham Restaurant, with its extraordinary views over the Thames, is one of the most civilised family occasions in South West London. The Victorian hotel setting is genuinely grand but the staff are warm and accommodating to families. Best for a special celebration with primary-age and older children who can appreciate the setting.",
     shortDescription:
       "The most civilised Sunday lunch in Richmond — extraordinary Thames views and grand Victorian setting for special family occasions.",
-    photos: [],
+    photos: ["/images/restaurants/petersham-hotel-restaurant-richmond-1.jpg", "/images/restaurants/petersham-hotel-restaurant-richmond-2.jpg", "/images/restaurants/petersham-hotel-restaurant-richmond-3.jpg"],
     featured: false,
     tags: ["sunday-lunch", "thames-views", "victorian", "hotel-restaurant", "special-occasion"],
   },
@@ -1853,7 +1853,7 @@ export const restaurants: Restaurant[] = [
       "Padella is everything right about London dining: exceptional fresh pasta at genuinely affordable prices, no bookings, a queue that moves fast enough to be exciting rather than miserable. For families, the format is ideal — kids love pasta, the dishes are simple enough to be universally appreciated, and kids eat free during half term and summer holidays. The pici cacio e pepe is life-changing. Arrive when it opens to beat the queue.",
     shortDescription:
       "London's most celebrated pasta restaurant — exceptional fresh pasta for under £15, kids eat free in holidays.",
-    photos: [],
+    photos: ["/images/restaurants/padella-shoreditch-1.jpg", "/images/restaurants/padella-shoreditch-2.jpg", "/images/restaurants/padella-shoreditch-3.jpg"],
     featured: true,
     tags: ["pasta", "italian", "no-booking", "queue-worth-it", "kids-eat-free", "affordable"],
   },
@@ -1895,7 +1895,7 @@ export const restaurants: Restaurant[] = [
       "The Smoking Goat moved to a larger Shoreditch space and the extra room makes it genuinely family-friendly — generously spaced tables, highchairs available, and a kitchen that can dial down the spice for younger diners. The Thai-influenced BBQ cooking is some of the most exciting food in East London. Best for adventurous families with primary-age kids who can handle a bit of chilli.",
     shortDescription:
       "Bold Thai-inspired BBQ in a generous Shoreditch space — great for adventurous families with older children.",
-    photos: [],
+    photos: ["/images/restaurants/smoking-goat-shoreditch-1.jpg", "/images/restaurants/smoking-goat-shoreditch-2.jpg", "/images/restaurants/smoking-goat-shoreditch-3.jpg"],
     featured: false,
     tags: ["thai", "bbq", "shoreditch-high-street", "spicy", "adventurous"],
   },
@@ -1937,7 +1937,7 @@ export const restaurants: Restaurant[] = [
       "Dishoom is a phenomenon and families are a huge part of its appeal. The all-day Bombay café format means breakfast, lunch, or dinner — the bacon naan at breakfast is the stuff of London legend. The kids menu is genuinely excellent (not just 'mild curry'), and the atmospheric Irani café setting fascinates children. Staff are consistently praised for their warmth with young diners. Queue for breakfast on weekends or book for lunch.",
     shortDescription:
       "The Bombay café institution — legendary bacon naans for breakfast, a brilliant kids menu, and staff who genuinely love having families in.",
-    photos: [],
+    photos: ["/images/restaurants/dishoom-shoreditch-1.jpg", "/images/restaurants/dishoom-shoreditch-2.jpg", "/images/restaurants/dishoom-shoreditch-3.jpg"],
     featured: true,
     tags: ["indian", "bombay-cafe", "breakfast", "bacon-naan", "institution", "all-day"],
   },
@@ -1979,7 +1979,7 @@ export const restaurants: Restaurant[] = [
       "Tomos Parry's Michelin-starred wood-fire restaurant is one of London's most exciting dining destinations. For families with food-loving older children, a Sunday lunch at Brat is genuinely educational and memorable — watching the whole turbot cooked over the wood fire, the charred vegetables, the exceptional cooking. Not for toddlers or buggies, but an extraordinary experience for families with adventurous older children.",
     shortDescription:
       "Michelin-starred wood-fire cooking on Redchurch Street — a genuinely exciting experience for food-curious older children.",
-    photos: [],
+    photos: ["/images/restaurants/brat-shoreditch-1.jpg", "/images/restaurants/brat-shoreditch-2.jpg", "/images/restaurants/brat-shoreditch-3.jpg"],
     featured: false,
     tags: ["michelin-star", "wood-fire", "basque", "older-kids", "special-occasion"],
   },
@@ -2021,7 +2021,7 @@ export const restaurants: Restaurant[] = [
       "Boxpark is the solution to the 'nobody can agree on what to eat' family problem. The street food market format means everyone gets what they want — burgers, ramen, pizza, Korean — across multiple food traders. The outdoor space handles buggies, the atmosphere is energetic but inclusive, and the pricing is reasonable. Perfect for family groups with varying tastes and ages.",
     shortDescription:
       "The solution to family menu disagreements — a street food market where everyone gets exactly what they want.",
-    photos: [],
+    photos: ["/images/restaurants/boxpark-shoreditch-1.jpg", "/images/restaurants/boxpark-shoreditch-2.jpg", "/images/restaurants/boxpark-shoreditch-3.jpg"],
     featured: false,
     tags: ["street-food", "market", "variety", "outdoor", "no-booking", "group-friendly"],
   },
@@ -2063,7 +2063,7 @@ export const restaurants: Restaurant[] = [
       "Beigel Bake on Brick Lane is a London institution open 24 hours and one of the greatest value food experiences in the city. The salt beef beigels are legendary, the prices extraordinary, and the experience of watching beigels being made and choosing your filling is genuinely fun for children. A compulsory East London stop on any family Shoreditch day out.",
     shortDescription:
       "A 24-hour East London institution — the legendary salt beef beigel experience that every London child should have.",
-    photos: [],
+    photos: ["/images/restaurants/cafe-columbia-shoreditch-1.jpg", "/images/restaurants/cafe-columbia-shoreditch-2.jpg", "/images/restaurants/cafe-columbia-shoreditch-3.jpg"],
     featured: false,
     tags: ["beigel", "salt-beef", "brick-lane", "institution", "24-hour", "value"],
   },
@@ -2105,7 +2105,7 @@ export const restaurants: Restaurant[] = [
       "James Lowe's Michelin-starred Lyle's in the Tea Building is not conventionally child-friendly — the set menu format, the adult-oriented ingredients, and the no-highchair policy make it a destination for older children only. But for families with food-obsessed older children (10+), a Saturday lunch here is an extraordinary introduction to the best of modern British cooking. Book months ahead.",
     shortDescription:
       "Michelin-starred modern British cooking in the Tea Building — strictly for food-obsessed older children and their parents.",
-    photos: [],
+    photos: ["/images/restaurants/lyles-shoreditch-1.jpg", "/images/restaurants/lyles-shoreditch-2.jpg", "/images/restaurants/lyles-shoreditch-3.jpg"],
     featured: false,
     tags: ["michelin-star", "modern-british", "tea-building", "set-menu", "older-kids-only"],
   },
@@ -2147,7 +2147,7 @@ export const restaurants: Restaurant[] = [
       "The cult fried chicken truck and market stall that East London loves. Mother Clucker's buttermilk fried chicken is some of the best in London and the outdoor, casual format makes it a great family option around Spitalfields and Shoreditch markets. A fun, informal East London food experience rather than a sit-down restaurant.",
     shortDescription:
       "Cult buttermilk fried chicken served around Spitalfields — a fun, informal East London street food experience.",
-    photos: [],
+    photos: ["/images/restaurants/mother-chicken-shoreditch-1.jpg", "/images/restaurants/mother-chicken-shoreditch-2.jpg", "/images/restaurants/mother-chicken-shoreditch-3.jpg"],
     featured: false,
     tags: ["fried-chicken", "street-food", "spitalfields", "casual", "outdoor"],
   },
@@ -2189,7 +2189,7 @@ export const restaurants: Restaurant[] = [
       "Set in a stunning converted Victorian chapel, Galvin La Chapelle is one of the most spectacular dining rooms in London. The soaring vaulted ceiling and grand proportions genuinely impress children, and the Michelin-starred French cooking is exceptional. Sunday lunch is the family entry point — the set menu represents good value and the staff are experienced with well-behaved children. An unforgettable special occasion.",
     shortDescription:
       "Michelin-starred French cooking in a stunning Victorian chapel — a genuinely spectacular special occasion for families.",
-    photos: [],
+    photos: ["/images/restaurants/galvin-la-chapelle-shoreditch-1.jpg", "/images/restaurants/galvin-la-chapelle-shoreditch-2.jpg", "/images/restaurants/galvin-la-chapelle-shoreditch-3.jpg"],
     featured: false,
     tags: ["michelin-star", "french", "victorian-chapel", "spitalfields", "special-occasion"],
   },
@@ -2231,7 +2231,7 @@ export const restaurants: Restaurant[] = [
       "The more casual sibling of Viajante at the Town Hall Hotel in Bethnal Green, Corner Room offers creative modern British cooking at more accessible prices. The art deco hotel setting is interesting for children and the cooking is inventive without being inaccessible. A good option for families with older children looking for quality without Michelin-star prices.",
     shortDescription:
       "Creative British cooking in a beautiful art deco hotel — quality dining for families at more accessible prices.",
-    photos: [],
+    photos: ["/images/restaurants/corner-room-shoreditch-1.jpg", "/images/restaurants/corner-room-shoreditch-2.jpg", "/images/restaurants/corner-room-shoreditch-3.jpg"],
     featured: false,
     tags: ["modern-british", "art-deco", "town-hall-hotel", "bethnal-green", "creative"],
   },
