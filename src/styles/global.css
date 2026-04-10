@@ -481,23 +481,42 @@ p { max-width: 70ch; }
   margin-bottom: 0.75rem;
 }
 
-/* Badge */
-.badge-section {
-  background: #f8f4ff;
-  border: 1px solid #e9d5ff;
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
+/* Owner disclosure (badge) */
+.owner-disclosure {
+  margin-top: 2rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
 }
-.badge-section h3 { font-size: 0.95rem; margin-bottom: 0.75rem; }
-.badge-preview {
-  background: var(--color-primary);
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-sm);
+.owner-disclosure summary {
   font-size: 0.8rem;
-  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  user-select: none;
+}
+.owner-disclosure summary::-webkit-details-marker { display: none; }
+.owner-disclosure summary::before {
+  content: '›';
   display: inline-block;
-  margin-bottom: 0.75rem;
+  transition: transform 0.15s ease;
+  font-size: 1rem;
+  line-height: 1;
+}
+.owner-disclosure[open] summary::before { transform: rotate(90deg); }
+.owner-disclosure__body {
+  margin-top: 0.75rem;
+  padding: 0.875rem;
+  background: var(--color-bg-soft);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+.owner-disclosure__body p {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.6rem;
 }
 .badge-embed-code {
   background: #1a1a2e;

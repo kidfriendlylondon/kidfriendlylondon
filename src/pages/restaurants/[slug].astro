@@ -231,17 +231,6 @@ function attrStatus(val: string) {
           <!-- AdSense -->
           <div class="ad-unit">Advertisement</div>
 
-          <!-- Badge -->
-          <div class="badge-section">
-            <h3>🏅 Share the love — get a badge for your website</h3>
-            <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:0.75rem">
-              If you're the owner of {r.name}, embed this badge on your website to show parents you're kid-friendly approved. It links back to your listing here.
-            </p>
-            <div class="badge-preview">🍽️ Kid-Friendly Approved · KidFriendlyLondon.co.uk</div>
-            <p style="font-size:0.75rem;color:var(--color-text-muted);margin-bottom:0.4rem">Click to copy embed code:</p>
-            <div class="badge-embed-code" id="badge-code" title="Click to copy">{badgeEmbedCode}</div>
-          </div>
-
           <!-- Related listings -->
           {related.length > 0 && (
             <div class="related-section">
@@ -251,6 +240,15 @@ function attrStatus(val: string) {
               </div>
             </div>
           )}
+
+          <!-- Badge (owner disclosure) -->
+          <details class="owner-disclosure">
+            <summary>Are you the owner of {r.name}?</summary>
+            <div class="owner-disclosure__body">
+              <p>Embed this badge on your website to show parents you're listed on Kid Friendly London. Click to copy the embed code.</p>
+              <div class="badge-embed-code" id="badge-code" title="Click to copy">{badgeEmbedCode}</div>
+            </div>
+          </details>
         </div>
 
         <!-- Sidebar -->
