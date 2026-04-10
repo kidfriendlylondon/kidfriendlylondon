@@ -25,7 +25,7 @@ const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', mon
     <div style="text-align:center;max-width:320px">
       <h2 style="margin-bottom:1rem">Admin access</h2>
       <input type="password" id="admin-pw" placeholder="Enter password" style="width:100%;padding:0.75rem;border:1.5px solid var(--color-border);border-radius:var(--radius-sm);font-size:1rem;margin-bottom:0.75rem" />
-      <button onclick="checkPw()" class="btn btn-primary" style="width:100%;justify-content:center">Enter</button>
+      <button id="admin-login-btn" class="btn btn-primary" style="width:100%;justify-content:center">Enter</button>
     </div>
   </div>
 
@@ -146,7 +146,7 @@ const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', mon
       document.getElementById('admin-content')!.style.display = 'block';
     }
 
-    // Allow Enter key
+    document.getElementById('admin-login-btn')?.addEventListener('click', checkPw);
     document.getElementById('admin-pw')?.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') checkPw();
     });
