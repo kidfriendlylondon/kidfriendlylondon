@@ -25,6 +25,9 @@ export interface Restaurant {
   noiseLevel: "quiet" | "moderate" | "lively";
   bestForAgeRange: ("babies" | "toddlers" | "primary" | "all ages")[];
   bookingRequired: "yes" | "no" | "recommended";
+  veganOptions: "yes" | "no" | "likely";
+  glutenFreeOptions: "yes" | "no" | "likely";
+  halalOptions: "yes" | "no" | "likely";
   // Meta
   description: string;
   shortDescription: string;
@@ -161,6 +164,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "The Windmill is a Clapham institution that genuinely gets families. With a dedicated kids menu, multiple highchairs, a large beer garden perfect for buggy parking, and baby changing facilities, it ticks every box. Reviews consistently mention how welcoming the staff are with young children — \"brought our double buggy and they just sorted it without a fuss.\" Sunday roasts are legendary and the kids eat free deal on weekdays makes this a Nappy Valley staple.",
     shortDescription:
@@ -203,6 +209,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "likely",
     description:
       "Megan's has become a go-to for Clapham and South West London families seeking a relaxed Mediterranean brunch or lunch. The colourful decor, spacious layout, and genuinely child-sized portions make it ideal for families with toddlers and primary-age kids. Multiple reviewers praise the staff for going above and beyond — colouring sheets appear without asking, highchairs are already at the table. The outdoor terrace handles buggies with ease.",
     shortDescription:
@@ -245,6 +254,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "Honest Burgers is the easy family crowd-pleaser. Kids love the classic burger format, the rosemary salted chips are legendary, and parents appreciate the no-booking policy and relaxed atmosphere. A dedicated kids burger and the fact that everyone leaves full and happy makes this a reliable Clapham family staple. Note: it's on the lively side — not ideal for newborns, but primary-age kids absolutely love it.",
     shortDescription:
@@ -287,6 +299,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "One for parents who want a proper meal out with older children. Naughty Piglets doesn't have a specific kids menu but the small plates format works brilliantly — kids can graze, parents can eat properly. The Sunday lunch is exceptional. Best for confident primary-age eaters. Book well ahead.",
     shortDescription:
@@ -329,6 +344,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "no",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "American BBQ is a reliable crowd-pleaser for families and Bodean's Clapham delivers every time. Racks of ribs, pulled pork, mac and cheese — the format means something for everyone. Kids eat free on certain days, the portions are enormous, and the atmosphere is reliably buzzy without being overwhelming. Multiple reviewers mention bringing babies in buggies without any issues.",
     shortDescription:
@@ -371,6 +389,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "quiet",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "Clapham's finest restaurant is more family-friendly than its Michelin star might suggest. Sunday lunch is the sweet spot — chef Adam Byatt's team are accommodating to families and the set menu format works for older children. Not for toddlers, but a genuinely special occasion restaurant for families with primary-age and older kids. The cooking is exceptional.",
     shortDescription:
@@ -413,6 +434,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["babies", "toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "A true local pub that earns its place as a family favourite through sheer friendliness. The beer garden is large enough for multiple buggies and the staff go out of their way to accommodate families. The food is honest pub grub — nothing fancy but consistently well-executed. Great for weekday lunches with babies and toddlers when you don't want to plan ahead.",
     shortDescription:
@@ -455,6 +479,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "Pizza is the family failsafe and Pizza East does it properly — sourdough bases, quality toppings, and a kids menu that doesn't feel like an afterthought. The Portobello location has the best vibe and handles families well. Great for the 'everyone needs to agree' family meal occasion.",
     shortDescription:
@@ -497,6 +524,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "One of Clapham's most acclaimed restaurants, The Dairy champions seasonal British ingredients with genuine creativity. Sunday lunch is the family entry point — the rooftop terrace is magical in summer. Better for families with primary-age children who can engage with adventurous food. Not a baby destination but far more accommodating than its reputation suggests.",
     shortDescription:
@@ -539,6 +569,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["babies", "toddlers", "primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "Italian restaurants and families are a natural pairing, and Pausa in Clapham Old Town nails the formula. Pasta that kids actually eat, tiramisu for parents to fight over, a welcoming terrace for buggies, and staff who genuinely smile when families walk in. One reviewer specifically noted they came in with a newborn and a toddler and \"everyone couldn't have been more lovely.\"",
     shortDescription:
@@ -583,6 +616,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["babies", "toddlers", "primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "The Farmhouse is the quintessential Notting Hill family restaurant. All-day dining from breakfast through dinner, a spacious layout that handles buggies easily, a proper kids menu, and the kind of relaxed atmosphere where nobody minds if a toddler is having a moment. The Westbourne Grove terrace is perfect for sunny days with babies in arms.",
     shortDescription:
@@ -625,6 +661,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "likely",
     description:
       "Ottolenghi's original Notting Hill outpost is a rite of passage for food-loving London families. The shared-table format, the incredible counter display, and the fact that kids with even slightly adventurous palates will find something to love. Best for Saturday brunch with toddlers — come early, grab a pastry from the counter while you wait, and let the kids point at things they want to try.",
     shortDescription:
@@ -667,6 +706,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["babies", "toddlers", "primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "Granger & Co. is the Notting Hill family brunch destination — the fluffy ricotta hotcakes are Instagrammed by parents while kids demolish scrambled eggs and toast soldiers. The big windows, light space, and genuinely welcoming staff make it one of the most buggy-friendly restaurants in W11. The queue on Saturday mornings is testament to how much families love it. Book ahead or arrive before 9am.",
     shortDescription:
@@ -709,6 +751,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "no",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "Tom Conran's legendary Notting Hill pub-restaurant is more family-friendly than its boisterous reputation suggests — but only upstairs. The dining room above is calmer, and the Irish stew and Guinness-stout clams are the kind of proper cooking that food-curious kids remember. Best for families with older, adventurous children. Note the pub downstairs is not buggy-friendly.",
     shortDescription:
@@ -751,6 +796,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "yes",
     description:
       "A hidden neighbourhood gem that punches far above its weight. The Turkish-Mediterranean menu offers brilliant value — mezze platters, flatbreads, and dips that kids love picking at. Outdoor seating handles buggies well and the atmosphere is relaxed and welcoming all day. One of Notting Hill's best kept secrets for families who don't want to spend a fortune.",
     shortDescription:
@@ -793,6 +841,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["babies", "toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "no",
+    glutenFreeOptions: "no",
+    halalOptions: "no",
     description:
       "The legendary pastéis de nata from Lisboa Patisserie are a Notting Hill pilgrimage for every family in West London. A relaxed café experience with excellent Portuguese coffee, the world's best custard tarts, and seating outside on Golborne Road. The perfect Saturday morning stop with a buggy before exploring Portobello Market. Kids and adults equally delighted.",
     shortDescription:
@@ -835,6 +886,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "quiet",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "Kitchen W8 is the special occasion restaurant for Notting Hill and Kensington families. Michelin-starred cooking in a more relaxed setting than you'd expect — the Sunday lunch in particular attracts well-behaved primary-age children and their parents. The set menu is excellent value for the quality. Not for toddlers, but a memorable experience for older children learning to appreciate fine food.",
     shortDescription:
@@ -877,6 +931,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "The spectacular Gothic-meets-Baroque interior at Beach Blanket Babylon is genuinely jaw-dropping for children and adults alike. The weekend brunch is a Notting Hill institution for families — kids are fascinated by the decor, parents love the cocktails and the Eggs Benedict, and the service team genuinely welcomes children. The garden is a summer bonus.",
     shortDescription:
@@ -919,6 +976,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "Run by three brothers with their own farm in Sussex, The Shed champions genuinely seasonal British cooking. The rustic farm-shed decor is charming and children are surprisingly engaged by the provenance story — 'this pig came from our farm.' Sunday lunch is especially recommended for families with older children who appreciate quality ingredients. Compact space means not ideal for buggies.",
     shortDescription:
@@ -961,6 +1021,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "no",
+    glutenFreeOptions: "no",
+    halalOptions: "no",
     description:
       "A tiny American diner that kids absolutely love — the booth seating, the retro diner vibe, the milkshakes. Lucky Seven is a Notting Hill institution that families return to again and again. The burgers are genuinely good, the atmosphere is fun, and the prices are the most reasonable thing in W11. Note it's very compact — not suitable for buggies — but primary-age children find the whole experience brilliant.",
     shortDescription:
@@ -1005,6 +1068,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "likely",
     description:
       "Breakfast at Ottolenghi Islington is a North London family rite of passage. The bountiful counter display, the incredible baked goods, and the sharing-plate format mean that even the fussiest toddler will find something to eat. Saturday morning is peak family time. The Islington branch is the liveliest of the Ottolenghi empire — book a table or come early.",
     shortDescription:
@@ -1047,6 +1113,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "Trullo is one of London's great Italian restaurants and families with older children will have a genuinely special meal here. The fresh pasta is some of the best in the city, the charcoal grill produces exceptional meats, and the Sunday lunch atmosphere is warm and relaxed. Not a place for toddlers or buggies — the space is compact and the vibe aspirational — but for families wanting a proper Italian occasion, this is the destination.",
     shortDescription:
@@ -1089,6 +1158,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["babies", "toddlers", "primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "Tucked into Camden Passage antiques market, The Elk in the Woods is a charming all-day café-restaurant that handles families beautifully. Brunch is the main event — avocado toast for parents, French toast and pancakes for kids, excellent coffee. The outdoor seating on the passage is perfect for buggies and warm days. Multiple reviews mention arriving with newborns and being welcomed warmly.",
     shortDescription:
@@ -1131,6 +1203,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "A tiny, perfectly formed Islington pub with exceptional food and a welcoming atmosphere for families with well-behaved older children. The compact space means it's not practical for toddlers or buggies, but primary-age children who can sit and enjoy a proper pub lunch will love the atmosphere. The pies are outstanding.",
     shortDescription:
@@ -1173,6 +1248,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "yes",
     description:
       "GEM is a Kurdish restaurant on Upper Street that offers extraordinary value and the kind of mezze format that works brilliantly for families — kids graze on flatbreads, hummus, and grilled meats while parents eat properly. The warmth of the welcome extends to children and the BYO policy keeps costs down. One of Islington's best kept family secrets.",
     shortDescription:
@@ -1215,6 +1293,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "Frederick's has been an Islington institution for over 50 years and its beautiful conservatory and garden make it one of the most civilised places to take children in North London. The kids menu is thoughtful, the staff genuinely experienced with families, and the Sunday lunch is outstanding. Baby changing is available and buggies are accommodated without fuss.",
     shortDescription:
@@ -1257,6 +1338,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["babies", "toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "The Breakfast Club has been feeding London families for two decades and the Islington branch at Camden Passage is one of the best. All-day brunch format means pancakes at any hour, the kids menu is genuinely well-designed, and the playful American diner atmosphere means even the wait on busy weekends feels fun. Expect queues on Saturday mornings.",
     shortDescription:
@@ -1299,6 +1383,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "quiet",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "Adjacent to the Almeida Theatre, this elegant French restaurant offers one of Islington's best pre-theatre menus — perfect for families attending the theatre with older children. The set lunch is excellent value and the staff are well-practised at handling families attending early shows. A genuinely civilised special occasion for families with primary-age and older children.",
     shortDescription:
@@ -1341,6 +1428,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["babies", "toddlers", "primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "Primrose Hill's favourite family café-restaurant, Greenberry has earned its loyal following through consistently excellent food and unwavering welcome for families. From morning coffee and pastries through to evening meals, the all-day format accommodates family schedules perfectly. The large buggy-friendly layout and attentive baby-changing facilities make it a neighbourhood staple for parents with young children.",
     shortDescription:
@@ -1383,6 +1473,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "One of Islington's finest gastropubs, The Draper's Arms is set in a beautifully restored Georgian building and offers consistently excellent food. The large garden is wonderful for families in summer and the Sunday roast is among the best in North London. Staff are welcoming to families and the elevated food quality means parents get a proper meal while children are kept well-fed.",
     shortDescription:
@@ -1427,6 +1520,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "quiet",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "Set in a stunning Arts and Crafts building opposite Richmond Park, The Dysart is a genuinely special restaurant for families marking a special occasion. The Sunday lunch is exceptional — properly creative British cooking in one of the most beautiful dining rooms in South West London. Not for toddlers, but primary-age children who appreciate good food will remember this meal.",
     shortDescription:
@@ -1469,6 +1565,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "The White Cross is the perfect post-Richmond-Park pub lunch destination — a sprawling riverside terrace, good gastropub food, and a genuinely welcoming approach to families. The outdoor space is one of the best in South West London for families: large, sunny, and buggy-accessible. After a morning in the park, this is exactly what parents and children need.",
     shortDescription:
@@ -1511,6 +1610,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "likely",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "A Richmond institution serving Breton crêpes and galettes for over 30 years. Chez Lindsay is a family favourite because the format — sweet and savoury pancakes — is universally loved by children and parents alike. Kids naturally gravitate to the crêpe Suzette and chocolate versions while parents appreciate the galette complète and Breton cider. Utterly reliable and charming.",
     shortDescription:
@@ -1553,6 +1655,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["babies", "toddlers", "primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "Petersham Nurseries Café is one of the most magical dining environments in London — a working plant nursery with a stunning café serving exceptional Italian-inspired food. For families, it's a genuinely special experience: children are fascinated by the nursery setting, the outdoor terrace handles buggies, and the lunch menu is creative and seasonal. Expensive but worth every penny for a special family lunch.",
     shortDescription:
@@ -1595,6 +1700,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "no",
+    glutenFreeOptions: "yes",
+    halalOptions: "likely",
     description:
       "Gaucho Richmond is the go-to for Richmond families celebrating a special occasion. The steaks are exceptional, the kids menu is genuinely thoughtful (not just fish fingers), and the outdoor terrace handles families well in summer. Multiple reviews single out the Richmond branch for being more family-accommodating than other Gaucho locations.",
     shortDescription:
@@ -1637,6 +1745,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["babies", "toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "On Richmond Green with views of one of London's most beautiful public spaces, The Prince's Head is the ideal family pub lunch location. The outdoor seating is generous, buggies are welcomed, and the food is honest pub grub that children reliably enjoy. After lunch, Richmond Green provides ready-made entertainment for younger children. A perfect Richmond formula.",
     shortDescription:
@@ -1679,6 +1790,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "quiet",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "A neighbourhood gem in St Margarets that punches far above its weight in the quality stakes. Brula's French cooking is genuine and accomplished — the set lunch is exceptional value and the Sunday roast brings local families back week after week. Better for families with primary-age and older children who can appreciate the quality; the intimate atmosphere is not ideal for toddlers.",
     shortDescription:
@@ -1721,6 +1835,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "Tucked just off Richmond town centre in a charming churchyard setting, La Buvette is an authentic French bistro that has been welcoming Richmond families for years. The moules marinières are justifiably famous, the crêpes make children very happy, and the outdoor terrace by the church is one of Richmond's most charming dining spots.",
     shortDescription:
@@ -1763,6 +1880,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["babies", "toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "likely",
     description:
       "Inside Richmond Park with panoramic views across the Thames Valley, Pembroke Lodge Tea Rooms is the ultimate family destination. After walking through the park and spotting deer, the tea rooms provide exactly what families need: a proper cream tea, kids' sandwiches, and the most spectacular view from the garden terrace. An unmissable Richmond family experience.",
     shortDescription:
@@ -1805,6 +1925,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "quiet",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "The Sunday lunch at The Petersham Restaurant, with its extraordinary views over the Thames, is one of the most civilised family occasions in South West London. The Victorian hotel setting is genuinely grand but the staff are warm and accommodating to families. Best for a special celebration with primary-age and older children who can appreciate the setting.",
     shortDescription:
@@ -1849,6 +1972,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "Padella is everything right about London dining: exceptional fresh pasta at genuinely affordable prices, no bookings, a queue that moves fast enough to be exciting rather than miserable. For families, the format is ideal — kids love pasta, the dishes are simple enough to be universally appreciated, and kids eat free during half term and summer holidays. The pici cacio e pepe is life-changing. Arrive when it opens to beat the queue.",
     shortDescription:
@@ -1891,6 +2017,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "likely",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "The Smoking Goat moved to a larger Shoreditch space and the extra room makes it genuinely family-friendly — generously spaced tables, highchairs available, and a kitchen that can dial down the spice for younger diners. The Thai-influenced BBQ cooking is some of the most exciting food in East London. Best for adventurous families with primary-age kids who can handle a bit of chilli.",
     shortDescription:
@@ -1933,6 +2062,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "recommended",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "yes",
     description:
       "Dishoom is a phenomenon and families are a huge part of its appeal. The all-day Bombay café format means breakfast, lunch, or dinner — the bacon naan at breakfast is the stuff of London legend. The kids menu is genuinely excellent (not just 'mild curry'), and the atmospheric Irani café setting fascinates children. Staff are consistently praised for their warmth with young diners. Queue for breakfast on weekends or book for lunch.",
     shortDescription:
@@ -1975,6 +2107,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "Tomos Parry's Michelin-starred wood-fire restaurant is one of London's most exciting dining destinations. For families with food-loving older children, a Sunday lunch at Brat is genuinely educational and memorable — watching the whole turbot cooked over the wood fire, the charred vegetables, the exceptional cooking. Not for toddlers or buggies, but an extraordinary experience for families with adventurous older children.",
     shortDescription:
@@ -2017,6 +2152,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "yes",
+    glutenFreeOptions: "yes",
+    halalOptions: "likely",
     description:
       "Boxpark is the solution to the 'nobody can agree on what to eat' family problem. The street food market format means everyone gets what they want — burgers, ramen, pizza, Korean — across multiple food traders. The outdoor space handles buggies, the atmosphere is energetic but inclusive, and the pricing is reasonable. Perfect for family groups with varying tastes and ages.",
     shortDescription:
@@ -2059,6 +2197,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["toddlers", "primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "no",
+    glutenFreeOptions: "no",
+    halalOptions: "no",
     description:
       "Beigel Bake on Brick Lane is a London institution open 24 hours and one of the greatest value food experiences in the city. The salt beef beigels are legendary, the prices extraordinary, and the experience of watching beigels being made and choosing your filling is genuinely fun for children. A compulsory East London stop on any family Shoreditch day out.",
     shortDescription:
@@ -2101,6 +2242,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "James Lowe's Michelin-starred Lyle's in the Tea Building is not conventionally child-friendly — the set menu format, the adult-oriented ingredients, and the no-highchair policy make it a destination for older children only. But for families with food-obsessed older children (10+), a Saturday lunch here is an extraordinary introduction to the best of modern British cooking. Book months ahead.",
     shortDescription:
@@ -2143,6 +2287,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "lively",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "no",
+    veganOptions: "no",
+    glutenFreeOptions: "no",
+    halalOptions: "likely",
     description:
       "The cult fried chicken truck and market stall that East London loves. Mother Clucker's buttermilk fried chicken is some of the best in London and the outdoor, casual format makes it a great family option around Spitalfields and Shoreditch markets. A fun, informal East London food experience rather than a sit-down restaurant.",
     shortDescription:
@@ -2185,6 +2332,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "yes",
+    halalOptions: "no",
     description:
       "Set in a stunning converted Victorian chapel, Galvin La Chapelle is one of the most spectacular dining rooms in London. The soaring vaulted ceiling and grand proportions genuinely impress children, and the Michelin-starred French cooking is exceptional. Sunday lunch is the family entry point — the set menu represents good value and the staff are experienced with well-behaved children. An unforgettable special occasion.",
     shortDescription:
@@ -2227,6 +2377,9 @@ export const restaurants: Restaurant[] = [
     noiseLevel: "moderate",
     bestForAgeRange: ["primary", "all ages"],
     bookingRequired: "yes",
+    veganOptions: "likely",
+    glutenFreeOptions: "likely",
+    halalOptions: "no",
     description:
       "The more casual sibling of Viajante at the Town Hall Hotel in Bethnal Green, Corner Room offers creative modern British cooking at more accessible prices. The art deco hotel setting is interesting for children and the cooking is inventive without being inaccessible. A good option for families with older children looking for quality without Michelin-star prices.",
     shortDescription:

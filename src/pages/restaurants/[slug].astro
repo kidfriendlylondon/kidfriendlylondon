@@ -172,6 +172,9 @@ function attrStatus(val: string) {
                 { key: r.softPlay, label: 'Soft play area', icon: '🎠' },
                 { key: r.babyChanging, label: 'Baby changing', icon: '🚿' },
                 { key: r.buggyAccessible, label: 'Buggy accessible', icon: '🛻' },
+                { key: r.veganOptions, label: 'Vegan options', icon: '🌱' },
+                { key: r.glutenFreeOptions, label: 'Gluten free', icon: '🌾' },
+                { key: r.halalOptions, label: 'Halal', icon: '☪️' },
               ].map(({ key, label, icon }) => {
                 const { cls, icon: statusIcon } = attrStatus(key);
                 return (

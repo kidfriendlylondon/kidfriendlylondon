@@ -56,6 +56,12 @@ const keyAttrs = [
   r.buggyAccessible === 'yes' && 'Buggy friendly',
   r.softPlay === 'yes' && 'Soft play',
 ].filter(Boolean) as string[];
+
+const dietaryAttrs = [
+  r.veganOptions === 'yes' && { label: '🌱 Vegan', key: 'vegan' },
+  r.glutenFreeOptions === 'yes' && { label: '🌾 GF', key: 'gluten-free' },
+  r.halalOptions === 'yes' && { label: '☪️ Halal', key: 'halal' },
+].filter(Boolean) as { label: string; key: string }[];
 ---
 
 <article
@@ -68,6 +74,9 @@ const keyAttrs = [
   data-highchairs={r.highchairs}
   data-buggy={r.buggyAccessible}
   data-noise={r.noiseLevel}
+  data-vegan={r.veganOptions}
+  data-gluten-free={r.glutenFreeOptions}
+  data-halal={r.halalOptions}
 >
   <div class="listing-card__img">
     {r.photos.length > 0 ? (
@@ -100,6 +109,14 @@ const keyAttrs = [
       <div class="attribute-tags">
         {keyAttrs.map((attr) => (
           <span class="attr-tag">✓ {attr}</span>
+        ))}
+      </div>
+    )}
+
+    {dietaryAttrs.length > 0 && (
+      <div class="dietary-tags">
+        {dietaryAttrs.map(({ label }) => (
+          <span class="dietary-tag">{label}</span>
         ))}
       </div>
     )}
