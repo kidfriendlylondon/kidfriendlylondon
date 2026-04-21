@@ -87,6 +87,17 @@ const RESTAURANTS = [
   { slug: 'mother-chicken-shoreditch',       name: 'Mother Chicken',              postcode: 'E2 7RG' },
   { slug: 'galvin-la-chapelle-shoreditch',   name: 'Galvin La Chapelle',          postcode: 'E1 7LD' },
   { slug: 'corner-room-shoreditch',          name: 'The Corner Room',             postcode: 'E2 9NF' },
+  // Islington (new from Outscraper)
+  { slug: 'brother-marcus-angel',            name: 'Brother Marcus',              postcode: 'N1 8EA' },
+  { slug: 'gallipoli-islington',             name: 'Gallipoli Restaurant',        postcode: 'N1 1QP' },
+  { slug: 'omnom-islington',                 name: 'OMNOM',                       postcode: 'N1 1QP' },
+  { slug: 'jam-delish-islington',            name: 'Jam Delish',                  postcode: 'N1 0XT' },
+  { slug: 'tanakatsu-clerkenwell',           name: 'TANAKATSU',                   postcode: 'EC1V 7LT' },
+  { slug: 'liman-islington',                 name: 'Liman Restaurant',            postcode: 'N1 9PZ' },
+  { slug: 'kipferl-islington',               name: 'Kipferl',                     postcode: 'N1 8ED' },
+  { slug: 'la-divina-islington',             name: 'La Divina',                   postcode: 'N1 1QP' },
+  { slug: 'fish-central-clerkenwell',        name: 'Fish Central',                postcode: 'EC1V 8AP' },
+  { slug: 'oriental-gourmet-holloway',       name: 'Oriental Gourmet',            postcode: 'N7 8LT' },
 ];
 
 // ─── Places API (New) helpers ─────────────────────────────────────────────────
@@ -104,6 +115,7 @@ async function textSearch(query) {
       'Content-Type': 'application/json',
       'X-Goog-Api-Key': KEY,
       'X-Goog-FieldMask': 'places.id,places.displayName,places.photos',
+      'Referer': 'https://kidfriendlylondon.co.uk/',
     },
     body: JSON.stringify({ textQuery: query, maxResultCount: 1 }),
   });
@@ -127,7 +139,7 @@ const results = {}; // slug → ['/images/restaurants/...']
 
 for (const r of RESTAURANTS) {
   const idx = RESTAURANTS.indexOf(r) + 1;
-  process.stdout.write(`[${idx}/50] ${r.name} (${r.postcode}) ... `);
+  process.stdout.write(`[${idx}/${RESTAURANTS.length}] ${r.name} (${r.postcode}) ... `);
 
   try {
     const place = await textSearch(`${r.name} ${r.postcode} London`);
@@ -195,3 +207,4 @@ for (const [slug, paths] of Object.entries(results)) {
 
 fs.writeFileSync(DATA_FILE, src, 'utf8');
 console.log(`\nDone. ${patched}/${RESTAURANTS.length} restaurants updated.`);
+
