@@ -24,7 +24,6 @@ const metaDescription = generateMetaDescription(r);
 const siteUrl = 'https://kidfriendlylondon.co.uk';
 const listingUrl = `${siteUrl}/restaurants/${r.slug}`;
 
-// LocalBusiness JSON-LD schema
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Restaurant',
@@ -72,7 +71,6 @@ const schema = {
   ].filter(Boolean),
 };
 
-// Breadcrumb schema
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -84,7 +82,7 @@ const breadcrumbSchema = {
   ],
 };
 
-const badgeEmbedCode = `<a href="${listingUrl}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#e8572a;color:#fff;padding:8px 16px;border-radius:6px;font-family:sans-serif;font-size:13px;font-weight:600;text-decoration:none;">🍽️ Kid-Friendly Approved · KidFriendlyLondon.co.uk</a>`;
+const badgeEmbedCode = `<a href="${listingUrl}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#2D5016;color:#fff;padding:8px 16px;border-radius:6px;font-family:sans-serif;font-size:13px;font-weight:600;text-decoration:none;">🌿 Kid-Friendly Approved · KidFriendlyLondon.co.uk</a>`;
 
 function attrStatus(val: string) {
   if (val === 'yes') return { cls: 'attribute-item--yes', icon: '✅' };
@@ -99,66 +97,74 @@ function attrStatus(val: string) {
   canonical={listingUrl}
   schema={[schema, breadcrumbSchema]}
 >
-  <!-- Breadcrumb -->
-  <div class="container">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Home</a>
-      <span>›</span>
-      <a href={`/${r.borough}`}>{borough.name}</a>
-      <span>›</span>
-      <a href={`/${r.neighbourhood}`}>{neighbourhood.name}</a>
-      <span>›</span>
-      <span>{r.name}</span>
-    </nav>
-  </div>
+  <!-- Full-width hero photo -->
+  {r.photos.length > 0 ? (
+    <img
+      src={r.photos[0]}
+      alt={`${r.name} — ${neighbourhood.name}`}
+      class="listing-hero-photo"
+      loading="eager"
+    />
+  ) : (
+    <div class="listing-hero-placeholder">🌿</div>
+  )}
 
   <div class="listing-detail">
     <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span>›</span>
+        <a href={`/${r.borough}`}>{borough.name}</a>
+        <span>›</span>
+        <a href={`/${r.neighbourhood}`}>{neighbourhood.name}</a>
+        <span>›</span>
+        <span>{r.name}</span>
+      </nav>
+
       <div class="listing-detail__grid">
         <!-- Main content -->
         <div>
           <!-- Header -->
-          <div style="margin-bottom:1.5rem">
+          <div style="margin-bottom:1.75rem">
             {r.featured && (
               <span class="badge-featured" style="position:static;display:inline-block;margin-bottom:0.75rem">
                 ⭐ Featured Restaurant
               </span>
             )}
-            <p style="font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-muted);margin-bottom:0.35rem">
-              {r.cuisineType}
+            <p style="font-family:var(--font-sans);font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-accent);margin-bottom:0.4rem">
+              {r.cuisineType} · {neighbourhood.name}
             </p>
-            <h1 style="margin-bottom:0.75rem">{r.name}</h1>
-            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
+            <h1 style="font-family:var(--font-serif);font-size:clamp(1.75rem,4vw,2.5rem);color:var(--color-text);margin-bottom:0.75rem;line-height:1.15">{r.name}</h1>
+            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;font-family:var(--font-sans)">
               <div class="rating">
                 <span class="rating__star">★</span>
                 <strong>{r.googleRating}</strong>
-                <span class="rating__count">({r.reviewCount.toLocaleString()} Google reviews)</span>
+                <span class="rating__count">({r.reviewCount.toLocaleString()} reviews)</span>
               </div>
               <span class="price-range">{r.priceRange}</span>
               <span style="font-size:0.875rem;color:var(--color-text-muted)">📍 {r.address}</span>
             </div>
           </div>
 
-          <!-- Photos or placeholder -->
-          {r.photos.length > 0 ? (
-            <div class={`listing-detail__photos${r.photos.length === 1 ? ' listing-detail__photos--single' : ''}`}>
-              {r.photos.slice(0, 4).map((src, i) => (
+          <!-- Additional photos -->
+          {r.photos.length > 1 && (
+            <div class="listing-detail__photos" style="margin-bottom:2rem">
+              {r.photos.slice(1, 3).map((src, i) => (
                 <img
                   src={src}
-                  alt={`${r.name} — photo ${i + 1}`}
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                  style={r.photos.length === 1 ? 'grid-column:1/-1;height:320px;object-fit:cover;border-radius:var(--radius-md);' : i === 0 ? 'grid-column:1/-1;height:280px;object-fit:cover;' : 'height:180px;object-fit:cover;'}
+                  alt={`${r.name} — photo ${i + 2}`}
+                  loading="lazy"
+                  style="height:200px;object-fit:cover;width:100%"
                 />
               ))}
             </div>
-          ) : (
-            <div class="listing-detail__photos--placeholder">🍽️</div>
           )}
 
           <!-- Description -->
           <div class="listing-detail__section">
             <h2>About {r.name}</h2>
-            <p>{r.description}</p>
+            <p style="font-family:var(--font-sans);font-size:1rem;line-height:1.7;color:var(--color-text)">{r.description}</p>
           </div>
 
           <!-- Kid-friendly attributes -->
@@ -224,9 +230,9 @@ function attrStatus(val: string) {
           )}
 
           <!-- Suggest edit -->
-          <div style="padding:1rem 1.25rem;background:var(--color-bg-soft);border-radius:var(--radius-sm);border:1px solid var(--color-border);font-size:0.875rem;color:var(--color-text-muted)">
+          <div style="padding:1rem 1.25rem;background:var(--color-bg-soft);border-radius:var(--radius-sm);border:1px solid var(--color-border);font-size:0.875rem;color:var(--color-text-muted);font-family:var(--font-sans)">
             Something wrong or out of date?
-            <a href={`/suggest?restaurant=${encodeURIComponent(r.name)}`} style="color:var(--color-primary)">
+            <a href={`/suggest?restaurant=${encodeURIComponent(r.name)}`} style="color:var(--color-accent)">
               Suggest an edit →
             </a>
           </div>
@@ -268,14 +274,14 @@ function attrStatus(val: string) {
               >
                 🗓️ Book a table via OpenTable
               </a>
-              <p style="font-size:0.75rem;color:var(--color-text-muted);text-align:center">
+              <p style="font-size:0.75rem;color:var(--color-text-muted);text-align:center;font-family:var(--font-sans)">
                 Free reservation — no fees
               </p>
             </div>
           ) : (
             <div class="sidebar-card">
               <h3>Booking</h3>
-              <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:1rem">
+              <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:1rem;font-family:var(--font-sans)">
                 {r.bookingRequired === 'yes'
                   ? 'Booking is required for this restaurant. Call or visit their website.'
                   : r.bookingRequired === 'recommended'
@@ -302,8 +308,8 @@ function attrStatus(val: string) {
               <tr><td>Address</td><td>{r.address}, {r.postcode}</td></tr>
               <tr><td>Cuisine</td><td>{r.cuisineType}</td></tr>
               <tr><td>Price range</td><td>{r.priceRange}</td></tr>
-              <tr><td>Neighbourhood</td><td><a href={`/${r.neighbourhood}`} style="color:var(--color-primary)">{neighbourhood.name}</a></td></tr>
-              <tr><td>Borough</td><td><a href={`/${r.borough}`} style="color:var(--color-primary)">{borough.name}</a></td></tr>
+              <tr><td>Neighbourhood</td><td><a href={`/${r.neighbourhood}`} style="color:var(--color-accent)">{neighbourhood.name}</a></td></tr>
+              <tr><td>Borough</td><td><a href={`/${r.borough}`} style="color:var(--color-accent)">{borough.name}</a></td></tr>
             </table>
           </div>
 
@@ -355,12 +361,11 @@ function attrStatus(val: string) {
   </div>
 
   <script>
-    // Copy badge embed code on click
     const badgeEl = document.getElementById('badge-code');
     badgeEl?.addEventListener('click', async () => {
       await navigator.clipboard.writeText(badgeEl.textContent ?? '');
       const orig = badgeEl.style.background;
-      badgeEl.style.background = '#166534';
+      badgeEl.style.background = '#2D5016';
       setTimeout(() => { badgeEl.style.background = orig; }, 1000);
     });
   </script>

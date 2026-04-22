@@ -52,7 +52,7 @@ const emoji = cuisineEmoji[r.cuisineType] ?? '🍽️';
 const keyAttrs = [
   r.kidsMenu === 'yes' && 'Kids menu',
   r.highchairs === 'yes' && 'Highchairs',
-  r.outdoorSpace === 'yes' && 'Outdoor space',
+  r.outdoorSpace === 'yes' && 'Outdoor',
   r.buggyAccessible === 'yes' && 'Buggy friendly',
   r.softPlay === 'yes' && 'Soft play',
 ].filter(Boolean) as string[];
@@ -78,7 +78,7 @@ const dietaryAttrs = [
   data-gluten-free={r.glutenFreeOptions}
   data-halal={r.halalOptions}
 >
-  <div class="listing-card__img">
+  <div class="listing-card__img" style="position:relative">
     {r.photos.length > 0 ? (
       <img src={r.photos[0]} alt={`${r.name} restaurant`} loading="lazy" />
     ) : (
@@ -88,19 +88,16 @@ const dietaryAttrs = [
   </div>
 
   <div class="listing-card__body">
-    <div class="listing-card__cuisine">{r.cuisineType}</div>
+    <div class="listing-card__neighbourhood">{neighbourhood.name}</div>
     <h3 class="listing-card__name">
       <a href={`/restaurants/${r.slug}`}>{r.name}</a>
     </h3>
-
-    <div class="listing-card__meta">
-      <div class="rating">
+    <div class="listing-card__cuisine">
+      {r.cuisineType} · {r.priceRange} ·
+      <span class="rating" style="display:inline-flex">
         <span class="rating__star">★</span>
-        <span>{r.googleRating}</span>
-        <span class="rating__count">({r.reviewCount.toLocaleString()})</span>
-      </div>
-      <span class="price-range">{r.priceRange}</span>
-      <span class="text-muted" style="font-size:0.8rem">{neighbourhood.name}</span>
+        {r.googleRating}
+      </span>
     </div>
 
     <p class="listing-card__desc">{r.shortDescription}</p>
@@ -122,9 +119,7 @@ const dietaryAttrs = [
     )}
 
     <div class="listing-card__footer">
-      <a href={`/restaurants/${r.slug}`} class="btn btn-primary btn-sm">
-        View details →
-      </a>
+      <a href={`/restaurants/${r.slug}`} class="card-link">View details →</a>
       {r.openTableId && (
         <a
           href={`https://www.opentable.co.uk/r/${r.openTableId}`}
@@ -132,7 +127,7 @@ const dietaryAttrs = [
           target="_blank"
           rel="noopener"
         >
-          Book a table
+          Book
         </a>
       )}
     </div>

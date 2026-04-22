@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import ListingCard from '../components/ListingCard.astro';
+import FilterBar from '../components/FilterBar.astro';
 import { restaurants, getFeaturedRestaurants, neighbourhoodMeta } from '../data/restaurants';
 
 const featured = getFeaturedRestaurants();
@@ -23,7 +24,7 @@ const schema = {
 
 <Base
   title="Kid Friendly Restaurants London — Family Dining Guide | Kid Friendly London"
-  description="The most comprehensive guide to kid-friendly restaurants in London. Filter by neighbourhood, highchairs, kids menu, outdoor space, buggy access and more. 50+ enriched listings across Clapham, Notting Hill, Islington, Richmond and Shoreditch."
+  description="The most comprehensive guide to kid-friendly restaurants in London. Filter by neighbourhood, highchairs, kids menu, outdoor space, buggy access and more. 130+ enriched listings across Clapham, Notting Hill, Islington, Richmond and Shoreditch."
   schema={schema}
 >
   <!-- Hero -->
@@ -31,27 +32,17 @@ const schema = {
     <div class="container">
       <p class="hero__eyebrow">London's most detailed family dining guide</p>
       <h1 class="hero__title">
-        Kid-Friendly Restaurants<br />in London
+        London's most trusted guide to family dining
       </h1>
       <p class="hero__subtitle">
-        More than a list — every restaurant is enriched with the details that actually matter to parents: highchairs, buggy access, kids menus, outdoor space, noise level, and age suitability.
+        Every restaurant is checked for the things parents actually need — highchairs, buggy access, kids menus, outdoor space, noise level, and more.
       </p>
 
-      <div class="hero__search">
-        <input
-          type="search"
-          id="hero-search"
-          placeholder="Search by restaurant name or neighbourhood..."
-          aria-label="Search restaurants"
-        />
-        <button type="button" id="hero-search-btn">Search</button>
-      </div>
-
       <div class="hero__trust">
-        <div class="trust-item"><span>✅</span> {totalListings}+ restaurants reviewed</div>
-        <div class="trust-item"><span>📍</span> 5 London neighbourhoods</div>
-        <div class="trust-item"><span>🔄</span> Updated weekly</div>
-        <div class="trust-item"><span>👨‍👩‍👧</span> Built by parents, for parents</div>
+        <div class="trust-item"><strong>{totalListings}+</strong> restaurants reviewed</div>
+        <div class="trust-item"><strong>5</strong> London neighbourhoods</div>
+        <div class="trust-item">Updated <strong>weekly</strong></div>
+        <div class="trust-item">Built by <strong>parents</strong>, for parents</div>
       </div>
     </div>
   </section>
@@ -77,13 +68,19 @@ const schema = {
     </div>
   </section>
 
-  <!-- Featured listings -->
+  <!-- Featured listings with filter -->
   <section class="section">
     <div class="container">
       <h2 style="margin-bottom:0.5rem">Featured restaurants</h2>
-      <p class="text-muted" style="margin-bottom:1.5rem">Handpicked favourites — the best of the best for London families.</p>
-      <div class="listings-grid">
+      <p class="text-muted" style="margin-bottom:1.5rem;font-size:0.95rem">Handpicked favourites — the best of the best for London families.</p>
+
+      <FilterBar />
+
+      <div class="listings-grid" id="listings-grid">
         {featured.map((r) => <ListingCard restaurant={r} />)}
+      </div>
+      <div id="no-results" class="no-results" style="display:none">
+        <p>No restaurants match your current filters. <button class="filter-reset" onclick="document.getElementById('filter-reset').click()">Clear filters</button></p>
       </div>
     </div>
   </section>
@@ -109,12 +106,12 @@ const schema = {
     </div>
   </section>
 
-  <!-- AdSense unit (below fold) -->
+  <!-- AdSense unit -->
   <div class="container">
     <div class="ad-unit">Advertisement — Google AdSense (insert ad code here)</div>
   </div>
 
-  <!-- What makes us different -->
+  <!-- Why different -->
   <section class="section">
     <div class="container">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center">
@@ -139,11 +136,11 @@ const schema = {
             ))}
           </ul>
         </div>
-        <div style="background:var(--color-bg-soft);border-radius:var(--radius-lg);padding:2rem">
-          <p style="font-style:italic;font-size:1.05rem;margin-bottom:1rem;color:var(--color-text-muted)">
+        <div style="background:var(--color-bg-soft);border-radius:var(--radius-lg);padding:2rem;border:1px solid var(--color-border)">
+          <p style="font-family:Georgia,serif;font-style:italic;font-size:1.1rem;margin-bottom:1rem;color:var(--color-text);line-height:1.6">
             "Finally a restaurant guide that tells me if I can park my double buggy. This is the only one I use now."
           </p>
-          <p style="font-size:0.875rem;font-weight:600">— Emma, mum of two, Clapham</p>
+          <p style="font-size:0.875rem;font-weight:600;color:var(--color-text-muted)">— Emma, mum of two, Clapham</p>
         </div>
       </div>
     </div>
@@ -173,35 +170,4 @@ const schema = {
       <p class="email-signup__small">No spam. Unsubscribe any time. Your email is never shared.</p>
     </div>
   </section>
-
-  <script>
-    // Hero search — redirect to neighbourhood or filter
-    const searchInput = document.getElementById('hero-search') as HTMLInputElement;
-    const searchBtn = document.getElementById('hero-search-btn');
-
-    const neighbourhoodSlugs: Record<string, string> = {
-      clapham: '/clapham',
-      'notting hill': '/notting-hill',
-      islington: '/islington',
-      richmond: '/richmond',
-      shoreditch: '/shoreditch',
-    };
-
-    function handleSearch() {
-      const q = searchInput.value.toLowerCase().trim();
-      for (const [term, url] of Object.entries(neighbourhoodSlugs)) {
-        if (q.includes(term)) {
-          window.location.href = url;
-          return;
-        }
-      }
-      // Default: go to first neighbourhood page
-      if (q) window.location.href = `/clapham?q=${encodeURIComponent(q)}`;
-    }
-
-    searchBtn?.addEventListener('click', handleSearch);
-    searchInput?.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') handleSearch();
-    });
-  </script>
 </Base>

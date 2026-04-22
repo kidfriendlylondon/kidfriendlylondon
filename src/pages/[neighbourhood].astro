@@ -45,7 +45,6 @@ const pageDescription = `The best family restaurants in ${meta.name}, London. ${
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">
-      <!-- Breadcrumb -->
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="/">Home</a>
         <span>›</span>
@@ -55,8 +54,8 @@ const pageDescription = `The best family restaurants in ${meta.name}, London. ${
       </nav>
 
       <p class="page-hero__tag">Family dining in {meta.name}</p>
-      <h1>Kid-Friendly Restaurants in {meta.name}</h1>
-      <p style="color:var(--color-text-muted);max-width:65ch;margin-top:0.75rem;font-size:1.05rem">
+      <h1>Kid-Friendly Restaurants<br />in {meta.name}</h1>
+      <p style="color:var(--color-text-muted);max-width:60ch;margin-top:0.75rem;font-size:1rem;font-family:var(--font-sans)">
         {meta.description}
       </p>
 
@@ -66,10 +65,6 @@ const pageDescription = `The best family restaurants in ${meta.name}, London. ${
           <span class="stat__label">restaurants reviewed</span>
         </div>
         <div class="stat">
-          <span class="stat__value">{featured.length}</span>
-          <span class="stat__label">featured picks</span>
-        </div>
-        <div class="stat">
           <span class="stat__value">{listings.filter(r => r.kidsMenu === 'yes').length}</span>
           <span class="stat__label">with kids menus</span>
         </div>
@@ -77,12 +72,16 @@ const pageDescription = `The best family restaurants in ${meta.name}, London. ${
           <span class="stat__value">{listings.filter(r => r.outdoorSpace === 'yes').length}</span>
           <span class="stat__label">with outdoor space</span>
         </div>
+        <div class="stat">
+          <span class="stat__value">{listings.filter(r => r.highchairs === 'yes').length}</span>
+          <span class="stat__label">with highchairs</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="container" style="padding-top:2rem;padding-bottom:4rem">
-    <!-- AdSense: between listings -->
+  <div class="container" style="padding-top:2.5rem;padding-bottom:4rem">
+    <!-- AdSense -->
     <div class="ad-unit" style="margin-bottom:1.5rem">Advertisement</div>
 
     <!-- Filter bar -->
@@ -91,8 +90,8 @@ const pageDescription = `The best family restaurants in ${meta.name}, London. ${
     <!-- Featured first -->
     {featured.length > 0 && (
       <div style="margin-bottom:2.5rem">
-        <h2 style="margin-bottom:1rem;font-size:1.1rem;color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.05em">
-          ⭐ Featured in {meta.name}
+        <h2 style="font-size:1rem;color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;font-family:var(--font-sans);margin-bottom:1rem">
+          Featured in {meta.name}
         </h2>
         <div class="listings-grid">
           {featured.map((r) => <ListingCard restaurant={r} />)}
@@ -102,7 +101,7 @@ const pageDescription = `The best family restaurants in ${meta.name}, London. ${
 
     {regular.length > 0 && (
       <div>
-        <h2 style="margin-bottom:1rem;font-size:1.1rem;color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.05em">
+        <h2 style="font-size:1rem;color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;font-family:var(--font-sans);margin-bottom:1rem">
           All restaurants in {meta.name}
         </h2>
         <div class="listings-grid" id="listings-grid">
@@ -114,16 +113,16 @@ const pageDescription = `The best family restaurants in ${meta.name}, London. ${
       </div>
     )}
 
-    <!-- AdSense: sidebar/between -->
+    <!-- AdSense -->
     <div class="ad-unit" style="margin-top:2rem">Advertisement</div>
 
     <!-- Borough link -->
     <div style="margin-top:2.5rem;padding:1.5rem;background:var(--color-bg-soft);border-radius:var(--radius-md);border:1px solid var(--color-border)">
-      <p style="font-size:0.9rem;color:var(--color-text-muted);margin-bottom:0.5rem">
+      <p style="font-size:0.85rem;color:var(--color-text-muted);margin-bottom:0.5rem;font-family:var(--font-sans)">
         Part of {borough.name}
       </p>
       <h3 style="margin-bottom:0.5rem">Explore more of {borough.name}</h3>
-      <p style="color:var(--color-text-muted);font-size:0.9rem;margin-bottom:1rem">
+      <p style="color:var(--color-text-muted);font-size:0.9rem;margin-bottom:1rem;font-family:var(--font-sans)">
         {borough.description}
       </p>
       <a href={`/${meta.borough}`} class="btn btn-outline">
@@ -132,10 +131,10 @@ const pageDescription = `The best family restaurants in ${meta.name}, London. ${
     </div>
 
     <!-- Get featured CTA -->
-    <div style="margin-top:1.5rem;padding:1.5rem;background:linear-gradient(135deg,#fff5f2,#fef3e8);border-radius:var(--radius-md);border:1px solid var(--color-border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+    <div style="margin-top:1.5rem;padding:1.75rem;background:#fff;border-radius:var(--radius-md);border:1px solid var(--color-border);box-shadow:var(--shadow-sm);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
       <div>
         <h3 style="margin-bottom:0.25rem">Own a restaurant in {meta.name}?</h3>
-        <p style="font-size:0.9rem;color:var(--color-text-muted)">Get featured at the top of this page for £29/month. Reach {listings.length > 0 ? 'hundreds of' : ''} local families actively searching for family dining.</p>
+        <p style="font-size:0.875rem;color:var(--color-text-muted);font-family:var(--font-sans)">Get featured at the top of this page for £29/month. Reach local families actively searching for family dining.</p>
       </div>
       <a href="/get-featured" class="btn btn-primary">Get Featured →</a>
     </div>
