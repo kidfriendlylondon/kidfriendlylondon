@@ -1,0 +1,212 @@
+---
+/**
+ * Mapbox GL JS interactive map showing restaurant pins.
+ * Loads Mapbox from CDN to avoid SSR issues.
+ * Pass showFilters=true to include the checkbox filter bar.
+ */
+
+export interface MapRestaurant {
+  slug: string;
+  name: string;
+  neighbourhoodName: string;
+  cuisineType: string;
+  priceRange: string;
+  lat: number;
+  lng: number;
+  kidsMenu: string;
+  highchairs: string;
+  buggyAccessible: string;
+  softPlay: string;
+  outdoorPark: string;
+  outdoorSpace: string;
+  veganOptions: string;
+  glutenFreeOptions: string;
+  halalOptions: string;
+}
+
+export interface Props {
+  restaurants: MapRestaurant[];
+  showFilters?: boolean;
+  height?: string;
+  mapId?: string;
+}
+
+const {
+  restaurants,
+  showFilters = true,
+  height = '520px',
+  mapId = 'restaurant-map',
+} = Astro.props;
+
+const token = import.meta.env.PUBLIC_MAPBOX_TOKEN;
+const mappable = restaurants.filter((r) => r.lat && r.lng);
+---
+
+{showFilters && (
+  <div class="map-filter-bar" id={`${mapId}-filters`}>
+    <div class="map-filter-bar__inner">
+      {[
+        { filter: 'kidsMenu',         label: 'Kids menu' },
+        { filter: 'highchairs',       label: 'Highchairs' },
+        { filter: 'buggyAccessible',  label: 'Buggy friendly' },
+        { filter: 'softPlay',         label: 'Soft play' },
+        { filter: 'outdoorPark',      label: 'Outdoor park' },
+        { filter: 'veganOptions',     label: 'Vegan' },
+        { filter: 'glutenFreeOptions',label: 'Gluten free' },
+        { filter: 'halalOptions',     label: 'Halal' },
+      ].map(({ filter, label }) => (
+        <label class="map-filter-label">
+          <input
+            type="checkbox"
+            class="map-filter-cb"
+            data-filter={filter}
+          />
+          {label}
+        </label>
+      ))}
+    </div>
+    <p class="map-filter-count" id={`${mapId}-count`}>
+      {mappable.length} restaurants shown
+    </p>
+  </div>
+)}
+
+<div
+  id={mapId}
+  class="mapbox-map"
+  style={`height:${height}`}
+  aria-label="Map of restaurants"
+></div>
+
+<script define:vars={{ token, mappable, mapId, showFilters }}>
+  (function () {
+    // Load Mapbox GL JS from CDN then initialise
+    const MAPBOX_VERSION = '2.15.0';
+
+    function loadMapboxCss() {
+      if (document.querySelector('link[data-mapbox]')) return;
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = `https://api.mapbox.com/mapbox-gl-js/v${MAPBOX_VERSION}/mapbox-gl.css`;
+      link.dataset.mapbox = '1';
+      document.head.appendChild(link);
+    }
+
+    function loadMapboxJs(callback) {
+      if (window.mapboxgl) { callback(); return; }
+      const script = document.createElement('script');
+      script.src = `https://api.mapbox.com/mapbox-gl-js/v${MAPBOX_VERSION}/mapbox-gl.js`;
+      script.onload = callback;
+      document.head.appendChild(script);
+    }
+
+    loadMapboxCss();
+    loadMapboxJs(initMap);
+
+    function initMap() {
+      if (!token) {
+        console.warn('RestaurantMap: PUBLIC_MAPBOX_TOKEN not set');
+        return;
+      }
+      const container = document.getElementById(mapId);
+      if (!container) return;
+
+      mapboxgl.accessToken = token;
+
+      const map = new mapboxgl.Map({
+        container: mapId,
+        style: 'mapbox://styles/mapbox/light-v11',
+        center: [-0.1278, 51.5074],
+        zoom: 11,
+        attributionControl: true,
+      });
+
+      map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
+
+      const markers = [];
+
+      mappable.forEach(function (r) {
+        // Custom pin element
+        const el = document.createElement('div');
+        el.className = 'map-marker';
+        el.setAttribute('title', r.name);
+
+        // Popup HTML
+        const popupHtml =
+          '<div class="map-popup">' +
+          '<p class="map-popup__nb">' + r.neighbourhoodName + '</p>' +
+          '<h3 class="map-popup__name">' + r.name + '</h3>' +
+          '<p class="map-popup__meta">' + r.cuisineType + ' · ' + r.priceRange + '</p>' +
+          '<a href="/restaurants/' + r.slug + '" class="map-popup__link">View details →</a>' +
+          '</div>';
+
+        const popup = new mapboxgl.Popup({
+          offset: 16,
+          closeButton: true,
+          maxWidth: '230px',
+        }).setHTML(popupHtml);
+
+        const marker = new mapboxgl.Marker({ element: el })
+          .setLngLat([r.lng, r.lat])
+          .setPopup(popup)
+          .addTo(map);
+
+        markers.push({ marker: marker, el: el, data: r });
+      });
+
+      // Fit map to all visible markers
+      function fitBounds(pts) {
+        if (!pts.length) return;
+        var bounds = new mapboxgl.LngLatBounds();
+        pts.forEach(function (p) { bounds.extend([p.lng, p.lat]); });
+        map.fitBounds(bounds, { padding: 60, maxZoom: 14, duration: 0 });
+      }
+
+      fitBounds(mappable);
+
+      // Filter logic
+      if (showFilters) {
+        var filtersEl = document.getElementById(mapId + '-filters');
+        var countEl = document.getElementById(mapId + '-count');
+
+        function applyFilters() {
+          var active = {};
+          if (filtersEl) {
+            filtersEl.querySelectorAll('.map-filter-cb:checked').forEach(function (cb) {
+              active[cb.dataset.filter] = 'yes';
+            });
+          }
+
+          var count = 0;
+          var visiblePts = [];
+          markers.forEach(function (item) {
+            var show = true;
+            for (var key in active) {
+              if (item.data[key] !== active[key]) { show = false; break; }
+            }
+            item.el.style.display = show ? '' : 'none';
+            if (show) {
+              count++;
+              visiblePts.push(item.data);
+            }
+          });
+
+          if (countEl) {
+            countEl.textContent = count + ' restaurant' + (count !== 1 ? 's' : '') + ' shown';
+          }
+
+          // Re-fit to visible pins
+          if (visiblePts.length > 0 && visiblePts.length < mappable.length) {
+            fitBounds(visiblePts);
+          } else if (visiblePts.length === mappable.length) {
+            fitBounds(mappable);
+          }
+        }
+
+        if (filtersEl) {
+          filtersEl.addEventListener('change', applyFilters);
+        }
+      }
+    }
+  })();
+</script>

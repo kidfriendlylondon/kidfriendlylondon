@@ -2,10 +2,33 @@
 import Base from '../layouts/Base.astro';
 import ListingCard from '../components/ListingCard.astro';
 import FilterBar from '../components/FilterBar.astro';
+import RestaurantMap from '../components/RestaurantMap.astro';
 import { restaurants, getFeaturedRestaurants, neighbourhoodMeta } from '../data/restaurants';
 
 const featured = getFeaturedRestaurants();
 const totalListings = restaurants.length;
+
+// Build the lean data object for the map (no need to pass the full Restaurant shape)
+const mapData = restaurants
+  .filter((r) => r.lat && r.lng)
+  .map((r) => ({
+    slug: r.slug,
+    name: r.name,
+    neighbourhoodName: neighbourhoodMeta[r.neighbourhood].name,
+    cuisineType: r.cuisineType,
+    priceRange: r.priceRange,
+    lat: r.lat!,
+    lng: r.lng!,
+    kidsMenu: r.kidsMenu,
+    highchairs: r.highchairs,
+    buggyAccessible: r.buggyAccessible,
+    softPlay: r.softPlay,
+    outdoorPark: r.outdoorPark,
+    outdoorSpace: r.outdoorSpace,
+    veganOptions: r.veganOptions,
+    glutenFreeOptions: r.glutenFreeOptions,
+    halalOptions: r.halalOptions,
+  }));
 
 const schema = {
   '@context': 'https://schema.org',
@@ -47,24 +70,19 @@ const schema = {
     </div>
   </section>
 
-  <!-- Neighbourhood quick-links -->
-  <section class="section section--soft">
+  <!-- Map + filters (replaces neighbourhood cards) -->
+  <section class="map-section section">
     <div class="container">
-      <h2 style="margin-bottom:1.5rem">Browse by neighbourhood</h2>
-      <div class="neighbourhood-grid">
-        {Object.entries(neighbourhoodMeta).map(([slug, meta]) => {
-          const count = restaurants.filter((r) => r.neighbourhood === slug).length;
-          return (
-            <a href={`/${slug}`} class="neighbourhood-card">
-              <div class="neighbourhood-card__emoji">
-                {slug === 'clapham' ? '🌿' : slug === 'notting-hill' ? '🎡' : slug === 'islington' ? '🎭' : slug === 'richmond' ? '🦌' : '🎨'}
-              </div>
-              <div class="neighbourhood-card__name">{meta.name}</div>
-              <div class="neighbourhood-card__count">{count} restaurants</div>
-            </a>
-          );
-        })}
-      </div>
+      <h2 style="margin-bottom:0.5rem">Explore restaurants on the map</h2>
+      <p class="text-muted" style="margin-bottom:1.25rem;font-size:0.95rem">
+        Filter by what matters to your family, then click any pin for details.
+      </p>
+      <RestaurantMap
+        restaurants={mapData}
+        showFilters={true}
+        height="520px"
+        mapId="home-map"
+      />
     </div>
   </section>
 

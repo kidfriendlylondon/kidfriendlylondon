@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import ListingCard from '../components/ListingCard.astro';
 import FilterBar from '../components/FilterBar.astro';
+import RestaurantMap from '../components/RestaurantMap.astro';
 import {
   restaurants,
   getRestaurantsByNeighbourhood,
@@ -22,6 +23,28 @@ const borough = boroughMeta[meta.borough];
 const listings = getRestaurantsByNeighbourhood(neighbourhood);
 const featured = listings.filter((r) => r.featured);
 const regular = listings.filter((r) => !r.featured);
+
+// Build map data for this neighbourhood
+const mapData = listings
+  .filter((r) => r.lat && r.lng)
+  .map((r) => ({
+    slug: r.slug,
+    name: r.name,
+    neighbourhoodName: meta.name,
+    cuisineType: r.cuisineType,
+    priceRange: r.priceRange,
+    lat: r.lat!,
+    lng: r.lng!,
+    kidsMenu: r.kidsMenu,
+    highchairs: r.highchairs,
+    buggyAccessible: r.buggyAccessible,
+    softPlay: r.softPlay,
+    outdoorPark: r.outdoorPark,
+    outdoorSpace: r.outdoorSpace,
+    veganOptions: r.veganOptions,
+    glutenFreeOptions: r.glutenFreeOptions,
+    halalOptions: r.halalOptions,
+  }));
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -79,6 +102,20 @@ const pageDescription = `The best family restaurants in ${meta.name}, London. ${
       </div>
     </div>
   </section>
+
+  <!-- Neighbourhood map -->
+  {mapData.length > 0 && (
+    <section class="map-section" style="padding:2rem 0 0">
+      <div class="container">
+        <RestaurantMap
+          restaurants={mapData}
+          showFilters={false}
+          height="380px"
+          mapId={`${neighbourhood}-map`}
+        />
+      </div>
+    </section>
+  )}
 
   <div class="container" style="padding-top:2.5rem;padding-bottom:4rem">
     <!-- AdSense -->
